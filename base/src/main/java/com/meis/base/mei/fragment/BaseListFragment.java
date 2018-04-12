@@ -43,6 +43,9 @@ public abstract class BaseListFragment<T> extends BaseFragment {
         super.onStart();
         mAdapter = getAdapter();
         RecyclerView recyclerView = getRecyclerView();
+        if (mAdapter == null || recyclerView == null) {
+            return;
+        }
         recyclerView.setAdapter(mAdapter);
         if (canLoadMore()) {
             mAdapter.setEnableLoadMore(true);
@@ -80,7 +83,15 @@ public abstract class BaseListFragment<T> extends BaseFragment {
         loadPage(DataConstants.FIRST_PAGE);
     }
 
+    /**
+     * 当前页数加载数据
+     *
+     * @param pageNo
+     */
     protected void loadPage(final int pageNo) {
+        if (getRecyclerView() == null || mAdapter == null) {
+            return;
+        }
         mPageNo = pageNo;
         getListObservable(pageNo)
                 .filter(new Predicate<Result<List<T>>>() {
@@ -121,6 +132,10 @@ public abstract class BaseListFragment<T> extends BaseFragment {
                 });
     }
 
+    /**
+     * @param pageNo
+     * @param result
+     */
     protected void onDataLoaded(int pageNo, Result<List<T>> result) {
         List<T> data = result.data;
         if (pageNo == DataConstants.FIRST_PAGE) {

@@ -1,4 +1,4 @@
-package com.meis.basemodule.activity;
+package com.meis.basemodule.activity.ui;
 
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.PopupMenu;

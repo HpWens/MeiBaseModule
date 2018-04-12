@@ -18,6 +18,7 @@ public abstract class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder>
 
     /**
      * 当前页码
+     * current page
      */
     private int mPageCount;
 

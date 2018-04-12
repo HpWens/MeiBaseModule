@@ -1,10 +1,11 @@
-package com.meis.basemodule.activity;
+package com.meis.basemodule.activity.ui;
 
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.meis.base.mei.BaseActivity;
 import com.meis.base.mei.PullToLoadMore;
@@ -23,7 +24,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
  */
 @PullToRefresh
 @PullToLoadMore
-public class RefreshActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
+public class PullRefreshActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
     @Override
     protected void initView() {
 
@@ -57,7 +58,9 @@ public class RefreshActivity extends BaseActivity implements Toolbar.OnMenuItemC
         postUiThreads(2000, new UiSubscriber<Long>() {
             @Override
             public void onCompleted() {
-                RefreshActivity.this.setRefreshing(false);
+                Toast.makeText(PullRefreshActivity.this, getResources().getString(R.string
+                        .mei_refresh_success), Toast.LENGTH_SHORT).show();
+                PullRefreshActivity.this.setRefreshing(false);
             }
         });
     }
@@ -68,7 +71,9 @@ public class RefreshActivity extends BaseActivity implements Toolbar.OnMenuItemC
         postUiThreads(2000, new UiSubscriber<Long>() {
             @Override
             public void onCompleted() {
-                RefreshActivity.this.setLoadingMore(false);
+                Toast.makeText(PullRefreshActivity.this, getResources().getString(R.string
+                        .mei_refresh_success), Toast.LENGTH_SHORT).show();
+                PullRefreshActivity.this.setLoadingMore(false);
             }
         });
     }
@@ -85,13 +90,13 @@ public class RefreshActivity extends BaseActivity implements Toolbar.OnMenuItemC
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.dingdang_type:
-                                setRefreshHeader(new DingDangHeader(RefreshActivity.this));
+                                setRefreshHeader(new DingDangHeader(PullRefreshActivity.this));
                                 break;
                             case R.id.bezier_type:
-                                setRefreshHeader(new BezierRadarHeader(RefreshActivity.this));
+                                setRefreshHeader(new BezierRadarHeader(PullRefreshActivity.this));
                                 break;
                             case R.id.classics_type:
-                                setRefreshHeader(new ClassicsHeader(RefreshActivity.this));
+                                setRefreshHeader(new ClassicsHeader(PullRefreshActivity.this));
                                 break;
                         }
                         autoRefresh();

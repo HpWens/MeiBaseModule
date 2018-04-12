@@ -35,4 +35,14 @@
         <item>Android runs on billions of handheld devices around the world, and it now supports these exciting, new form-factors.</item>
         <item>Resources to get you started with designing and developing for Android.</item>
     </string-array>
+
+    <string name="press_again_exit">再按一次退出</string>
+    <string name="image_transition">image_transition</string>
+
+    <string name="home">首页</string>
+    <string name="discover">发现</string>
+    <string name="shop">商店</string>
+    <string name="login">登录</string>
+    <string name="message">消息</string>
+    <string name="send">发送</string>
 </resources>

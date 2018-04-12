@@ -1,4 +1,4 @@
-package com.meis.basemodule.activity;
+package com.meis.basemodule.activity.ui;
 
 import android.view.View;
 
@@ -11,7 +11,7 @@ import com.meis.basemodule.R;
  * created on: 2018/4/11 15:31
  * description:
  */
-public class CusStatusActivity extends BaseActivity {
+public class CustomEmptyActivity extends BaseActivity {
     @Override
     protected void initView() {
 
@@ -28,7 +28,7 @@ public class CusStatusActivity extends BaseActivity {
             }
         });
         // setEmptyLayout 在 setState 方法之前调用
-        setEmptyLayout(R.layout.activity_cus_base_empty);
+        setEmptyLayout(R.layout.activity_custom_base_empty);
         setState(ViewState.EMPTY);
     }
 

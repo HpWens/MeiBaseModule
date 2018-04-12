@@ -8,7 +8,7 @@ import com.meis.basemodule.R;
  * created on: 2018/4/11 15:06
  * description:
  */
-public class DialogModuleActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
 

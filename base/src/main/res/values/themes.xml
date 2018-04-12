@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@android:color/transparent</item>
+    <style name="MeiBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="meiIconEmpty">@mipmap/mei_comm_ic_empty</item>
         <item name="meiColorTextGray">@color/mei_color_999999</item>
         <item name="meiTextEmpty">@string/mei_hint_empty</item>
         <item name="meiTextLoading">@string/mei_hint_loading</item>
         <item name="meiIconError">@mipmap/mei_comm_ic_error</item>
         <item name="meiTextError">@string/mei_hint_error</item>
+    </style>
+
+    <style name="MeiBaseTheme.NoActionBar" parent="MeiBaseTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

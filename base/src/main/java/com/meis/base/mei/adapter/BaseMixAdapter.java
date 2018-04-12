@@ -31,6 +31,9 @@ public class BaseMixAdapter extends BaseAdapter<Object> {
 
     private SparseArray mUniqueData = new SparseArray<>();
 
+    /**
+     * 是否过滤重复数据
+     */
     private boolean mFilterUnique = true;
 
     public BaseMixAdapter(List data, ItemPresenter... itemPresenters) {

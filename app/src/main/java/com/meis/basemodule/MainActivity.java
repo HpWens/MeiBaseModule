@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.view.View;
 
 import com.meis.base.mei.BaseActivity;
-import com.meis.basemodule.activity.ActivityModuleActivity;
-import com.meis.basemodule.dialog.DialogModuleActivity;
-import com.meis.basemodule.fragment.FragmentModuleActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -26,14 +23,14 @@ public class MainActivity extends BaseActivity {
     }
 
     public void clickActivity(View view) {
-        startActivity(new Intent(this, ActivityModuleActivity.class));
+        startActivity(new Intent(this, com.meis.basemodule.activity.MainActivity.class));
     }
 
     public void clickFragment(View view) {
-        startActivity(new Intent(this, FragmentModuleActivity.class));
+        startActivity(new Intent(this, com.meis.basemodule.fragment.MainActivity.class));
     }
 
     public void clickDialog(View view) {
-        startActivity(new Intent(this, DialogModuleActivity.class));
+        startActivity(new Intent(this, com.meis.basemodule.dialog.MainActivity.class));
     }
 }

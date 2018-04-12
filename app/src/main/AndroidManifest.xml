@@ -20,14 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ActivityModuleActivity"></activity>
-        <activity android:name=".fragment.FragmentModuleActivity"></activity>
-        <activity android:name=".dialog.DialogModuleActivity"></activity>
-        <activity android:name=".activity.StatusActivity"></activity>
-        <activity android:name=".activity.CusStatusActivity"></activity>
-        <activity android:name=".activity.RefreshActivity"></activity>
-        <activity android:name=".activity.SimpleListActivity"></activity>
-        <activity android:name=".activity.MulListActivity"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".fragment.MainActivity"></activity>
+        <activity android:name=".dialog.MainActivity"></activity>
+        <activity android:name=".activity.ui.StatusActivity"></activity>
+        <activity android:name=".activity.ui.CustomEmptyActivity"></activity>
+        <activity android:name=".activity.ui.PullRefreshActivity"></activity>
+        <activity android:name=".activity.ui.SingleListActivity"></activity>
+        <activity android:name=".activity.ui.MultiListActivity"></activity>
     </application>
 
 </manifest>

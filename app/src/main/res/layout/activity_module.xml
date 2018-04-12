@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
@@ -16,7 +15,6 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/btn_customize_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
@@ -33,7 +31,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
-        android:onClick="clickRefresh"
+        android:onClick="clickPullRefresh"
         android:text="@string/refresh"
         android:textAllCaps="false" />
 
@@ -42,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:onClick="clickSimple"
+        android:onClick="clickSingleList"
         android:text="@string/simple_type"
         android:textAllCaps="false" />
 
@@ -53,7 +51,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
-        android:onClick="clickMulti"
+        android:onClick="clickMultiList"
         android:text="@string/mul_type"
         android:textAllCaps="false" />
 </LinearLayout>

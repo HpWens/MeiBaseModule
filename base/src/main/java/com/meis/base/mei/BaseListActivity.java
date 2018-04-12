@@ -41,6 +41,9 @@ public abstract class BaseListActivity<T> extends BaseActivity {
         super.onCreate(savedInstanceState);
         mAdapter = getAdapter();
         RecyclerView recyclerView = getRecyclerView();
+        if (mAdapter == null || recyclerView == null) {
+            return;
+        }
         recyclerView.setAdapter(mAdapter);
         if (canLoadMore()) {
             mAdapter.setEnableLoadMore(true);
@@ -79,6 +82,9 @@ public abstract class BaseListActivity<T> extends BaseActivity {
     }
 
     protected void loadPage(final int pageNo) {
+        if (getRecyclerView() == null || mAdapter == null) {
+            return;
+        }
         mPageNo = pageNo;
         getListObservable(pageNo)
                 .filter(new Predicate<Result<List<T>>>() {

@@ -3,5 +3,5 @@
     <alpha
         android:duration="@android:integer/config_shortAnimTime"
         android:fromAlpha="1"
-        android:toAlpha="0"/>
+        android:toAlpha="0" />
 </set>

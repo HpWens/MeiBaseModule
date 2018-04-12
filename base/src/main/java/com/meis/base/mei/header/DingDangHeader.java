@@ -22,7 +22,7 @@ import com.scwang.smartrefresh.layout.util.DensityUtil;
 /**
  * author: ws4
  * created on: 2018/4/9 19:53
- * description:
+ * description:丁丁当头部下拉样式
  */
 public class DingDangHeader extends LinearLayout implements RefreshHeader {
 
