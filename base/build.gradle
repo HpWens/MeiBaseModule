@@ -33,6 +33,4 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'
     //fragment碎片
     compile 'me.yokeyword:fragmentation-core:1.3.3'
-
-    implementation project(':lib')
 }
