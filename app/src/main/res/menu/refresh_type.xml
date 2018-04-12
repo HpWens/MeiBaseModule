@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/dingdang_type"
+        android:title="@string/dingdang_type"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/bezier_type"
+        android:title="@string/bezier_type"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/classics_type"
+        android:title="@string/classics_type"
+        app:showAsAction="never" />
+</menu>

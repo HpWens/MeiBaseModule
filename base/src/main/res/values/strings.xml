@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Library</string>
+    <string name="mei_hint_empty">all over, nothing was found</string>
+    <string name="mei_hint_loading">loading ...</string>
+    <string name="mei_hint_error">failed to load , click retry ~~</string>
+    <string name="mei_pull_refresh">pull down to refresh</string>
+    <string name="mei_data_updating">data updating ...</string>
+    <string name="mei_release_refresh">release refresh</string>
+    <string name="mei_refresh_success">refresh success</string>
+    <string name="mei_refresh_failure">refresh failure</string>
+    <string name="mei_empty_item_type">no corresponding ItemPresenter type was added</string>
+</resources>

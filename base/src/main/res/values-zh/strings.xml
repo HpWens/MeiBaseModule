@@ -1,0 +1,11 @@
+<resources>
+    <string name="mei_hint_empty">全翻过了，什么都没找到</string>
+    <string name="mei_hint_loading">加载中...</string>
+    <string name="mei_hint_error">加载失败，点击重试~~</string>
+    <string name="mei_pull_refresh">下拉可以刷新</string>
+    <string name="mei_data_updating">数据更新中...</string>
+    <string name="mei_release_refresh">松开立即刷新</string>
+    <string name="mei_refresh_success">刷新完成</string>
+    <string name="mei_refresh_failure">刷新失败</string>
+    <string name="mei_empty_item_type">未添加相应的ItemPresenter类型</string>
+</resources>

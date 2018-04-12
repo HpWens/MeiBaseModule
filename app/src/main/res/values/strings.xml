@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">BaseModule</string>
+    <string name="activity_module">Activity模块</string>
+    <string name="fragment_module">Fragment模块</string>
+    <string name="dialog_module">Dialog模块</string>
+    <string name="status">类型</string>
+    <string name="status_type">状态（网络错误，空数据，正在加载...）</string>
+    <string name="cus_status_type">自定义状态（空数据界面为例）</string>
+    <string name="refresh">下拉刷新，上拉加载（支持自定义刷新样式）</string>
+    <string name="simple_type">单类型列表</string>
+    <string name="mul_type">多类型列表</string>
+
+    <string name="empty_type">空界面</string>
+    <string name="error_type">错误界面</string>
+    <string name="loading_type">加载界面</string>
+    <string name="cus_empty_type">自定义空界面</string>
+    <string name="empty_type_1">不要这么高冷~快去增加新数据吧！</string>
+    <string name="reload_data">正在重新加载数据</string>
+    <string name="cus_empty_page">我是自定义的空数据界面</string>
+    <string name="drag_refresh">请拖动我进行刷新哦</string>
+
+    <string name="dingdang_type">丁丁当</string>
+    <string name="bezier_type">贝塞尔曲线类雷达</string>
+    <string name="classics_type">经典下拉</string>
+    <string name="hot_news">热门新闻</string>
+
+    <string-array name="array_title">
+        <item>Andorid O Developer Preview</item>
+        <item>Build for a Multi-Screen World</item>
+        <item>Build Beautiful Apps</item>
+    </string-array>
+
+    <string-array name="array_content">
+        <item>An early look at the next version of Android for testing, development, and feedback. Get your apps ready for Android O!</item>
+        <item>Android runs on billions of handheld devices around the world, and it now supports these exciting, new form-factors.</item>
+        <item>Resources to get you started with designing and developing for Android.</item>
+    </string-array>
+</resources>

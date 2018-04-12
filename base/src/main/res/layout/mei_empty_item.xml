@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mei_64_dp"
+        android:gravity="center"
+        android:text="@string/mei_empty_item_type"
+        android:textSize="@dimen/sp_14" />
+
+</LinearLayout>

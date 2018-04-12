@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="meiIconEmpty" format="reference" />
+    <attr name="meiTextEmpty" format="string|reference" />
+    <attr name="meiTextLoading" format="string|reference" />
+    <attr name="meiColorTextGray" format="color|reference" />
+    <attr name="meiIconError" format="reference" />
+    <attr name="meiTextError" format="string|reference" />
+</resources>

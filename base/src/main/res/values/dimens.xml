@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mei_16_dp">16dp</dimen>
+    <dimen name="mei_48_dp">48dp</dimen>
+    <dimen name="mei_64_dp">64dp</dimen>
+    <dimen name="mei_100_dp">100dp</dimen>
+    <dimen name="mei_14_sp">14sp</dimen>
+</resources>
