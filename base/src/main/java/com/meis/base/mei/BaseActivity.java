@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 
+import com.meis.base.R;
 import com.meis.base.mei.fragment.BaseFragment;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
@@ -27,6 +28,7 @@ public abstract class BaseActivity extends CompatActivity implements ISupportAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MeiBaseTheme);
         mDelegate.onCreate(savedInstanceState);
         setContentView(layoutResId());
         initView();

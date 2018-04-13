@@ -18,6 +18,8 @@ public class ChatAdapter extends BaseAdapter<Chat> {
 
     @Override
     protected void convert(BaseViewHolder helper, Chat item) {
+        helper.setText(R.id.tv_name, item.name)
+                .setText(R.id.tv_msg, item.message);
 
     }
 }

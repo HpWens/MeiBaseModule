@@ -353,10 +353,18 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
         return mUserVisibleHint;
     }
 
-    protected void onShow() {
+    /**
+     * 请调用onSupportVisible
+     */
+    @Deprecated
+    private void onShow() {
     }
 
-    protected void onHide() {
+    /**
+     * 请调用onSupportInvisible
+     */
+    @Deprecated
+    private void onHide() {
     }
 
     protected abstract void initView();

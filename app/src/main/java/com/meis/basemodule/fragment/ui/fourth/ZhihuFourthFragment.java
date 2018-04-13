@@ -27,7 +27,7 @@ public class ZhihuFourthFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        getToolbarView().setTitle(getResources().getString(R.string.message));
+        getToolbarView().setTitle(getResources().getString(R.string.user_center));
 
         setState(ViewState.EMPTY);
     }

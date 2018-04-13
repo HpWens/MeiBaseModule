@@ -1,6 +1,7 @@
 package com.meis.base.mei.fragment;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.meis.base.mei.DataConstants;
@@ -63,8 +64,8 @@ public abstract class BaseListFragment<T> extends BaseFragment {
     }
 
     @Override
-    protected void onShow() {
-        super.onShow();
+    public void onSupportVisible() {
+        super.onSupportVisible();
         if (loadOnShow()) {
             loadPage(DataConstants.FIRST_PAGE);
         }

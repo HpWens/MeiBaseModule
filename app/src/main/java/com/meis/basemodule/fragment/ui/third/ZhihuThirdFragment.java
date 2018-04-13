@@ -3,16 +3,23 @@ package com.meis.basemodule.fragment.ui.third;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
-import com.meis.base.mei.ViewState;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.meis.base.mei.adapter.BaseAdapter;
 import com.meis.base.mei.entity.Result;
-import com.meis.base.mei.fragment.BaseFragment;
 import com.meis.base.mei.fragment.BaseListFragment;
+import com.meis.base.mei.header.DingDangHeader;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.ChatAdapter;
 import com.meis.basemodule.entity.Chat;
+import com.meis.basemodule.fragment.MainActivity;
+import com.meis.basemodule.fragment.MainFragment;
+import com.meis.basemodule.fragment.ui.fourth.ZhihuFourthFragment;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -38,7 +45,7 @@ public class ZhihuThirdFragment extends BaseListFragment<Chat> {
 
     @Override
     protected void initData() {
-
+        getToolbarView().setTitle(getResources().getString(R.string.message));
     }
 
     @Override
@@ -50,12 +57,42 @@ public class ZhihuThirdFragment extends BaseListFragment<Chat> {
 
     @Override
     protected BaseAdapter<Chat> getAdapter() {
-        return new ChatAdapter();
+        ChatAdapter chatAdapter = new ChatAdapter();
+        chatAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                // 因为启动的MsgFragment是MainFragment的兄弟Fragment,所以需要MainFragment.start()
+
+                // 也可以像使用getParentFragment()的方式,拿到父Fragment来操作 或者使用 EventBusActivityScope
+                ((MainFragment) getParentFragment()).start(MsgFragment.newInstance(mAdapter
+                        .getItem(position)));
+            }
+        });
+        return chatAdapter;
     }
 
     @Override
     protected Observable<Result<List<Chat>>> getListObservable(int pageNo) {
-        return null;
+        return getData(pageNo);
+    }
+
+    public Observable<Result<List<Chat>>> getData(int pageNo) {
+        Result<List<Chat>> result = new Result<>();
+        List<Chat> chatList = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            Chat chat = new Chat();
+            chat.id = i;
+            String[] name = new String[]{"Jake", "Eric", "Kenny", "Helen", "Carr"};
+            String[] chats = new String[]{"message1", "message2", "message3", "message4",
+                    "message5"};
+            chat.name = name[i % name.length];
+            chat.message = chats[i % name.length];
+            chatList.add(chat);
+        }
+        result.data = chatList;
+        result.resultCode = 0;
+        result.message = "";
+        return Observable.just(result);
     }
 
     @Override
@@ -65,11 +102,21 @@ public class ZhihuThirdFragment extends BaseListFragment<Chat> {
 
     @Override
     protected boolean canPullToRefresh() {
-        return false;
+        return true;
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.comm_recycler;
+    }
+
+    @Override
+    public RefreshHeader getRefreshHeader() {
+        return new DingDangHeader(mActivity);
+    }
+
+    @Override
+    protected boolean loadOnShow() {
+        return false;
     }
 }
