@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.meis.base.mei.BaseActivity;
 import com.meis.base.mei.BaseListActivity;
 import com.meis.base.mei.adapter.BaseAdapter;
 import com.meis.base.mei.adapter.BaseMixAdapter;
@@ -15,7 +14,6 @@ import com.meis.basemodule.adapter.MultiAdapter;
 import com.meis.basemodule.adapter.MultiAdapter1;
 import com.meis.basemodule.adapter.MultiAdapter2;
 import com.meis.basemodule.adapter.MultiAdapter3;
-import com.meis.basemodule.entity.Article;
 import com.meis.basemodule.entity.MultiBean;
 import com.meis.basemodule.entity.MultiBean1;
 import com.meis.basemodule.entity.MultiBean2;
@@ -57,15 +55,7 @@ public class MultiListActivity extends BaseListActivity<Object> {
         mAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
             @Override
             public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
-                Object o = mAdapter.getItem(position);
-                if (o instanceof MultiBean1) {
-                    return 1;
-                } else if (o instanceof MultiBean2) {
-                    return 4;
-                } else if (o instanceof MultiBean) {
-                    return 2;
-                }
-                return 3;
+                return 2;
             }
         });
         return mRecyclerView;

@@ -47,12 +47,14 @@ public class BottomBar extends LinearLayout {
 
 //        ImageView shadowView = new ImageView(context);
 //        shadowView.setBackgroundResource(R.drawable.actionbar_shadow_up);
-//        addView(shadowView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//        addView(shadowView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+// .LayoutParams.WRAP_CONTENT));
 
         mTabLayout = new LinearLayout(context);
         mTabLayout.setBackgroundColor(Color.WHITE);
         mTabLayout.setOrientation(LinearLayout.HORIZONTAL);
-        addView(mTabLayout, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        addView(mTabLayout, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+                .LayoutParams.MATCH_PARENT));
 
         mTabParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         mTabParams.weight = 1;
@@ -113,10 +115,15 @@ public class BottomBar extends LinearLayout {
     protected void onRestoreInstanceState(Parcelable state) {
         SavedState ss = (SavedState) state;
         super.onRestoreInstanceState(ss.getSuperState());
-
         if (mCurrentPosition != ss.position) {
-            mTabLayout.getChildAt(mCurrentPosition).setSelected(false);
-            mTabLayout.getChildAt(ss.position).setSelected(true);
+            View beforeView = mTabLayout.getChildAt(mCurrentPosition);
+            if (beforeView != null) {
+                beforeView.setSelected(false);
+            }
+            View currentView = mTabLayout.getChildAt(ss.position);
+            if (currentView != null) {
+                currentView.setSelected(true);
+            }
         }
         mCurrentPosition = ss.position;
     }
@@ -144,7 +151,8 @@ public class BottomBar extends LinearLayout {
             out.writeInt(position);
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable
+                .Creator<SavedState>() {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }

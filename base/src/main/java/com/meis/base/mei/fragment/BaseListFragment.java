@@ -1,5 +1,7 @@
 package com.meis.base.mei.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -31,17 +33,6 @@ public abstract class BaseListFragment<T> extends BaseFragment {
 
     @Override
     protected void initView() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         mAdapter = getAdapter();
         RecyclerView recyclerView = getRecyclerView();
         if (mAdapter == null || recyclerView == null) {
@@ -61,6 +52,11 @@ public abstract class BaseListFragment<T> extends BaseFragment {
         if (loadOnInit() || !loadOnShow()) {
             loadPage(DataConstants.FIRST_PAGE);
         }
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @Override

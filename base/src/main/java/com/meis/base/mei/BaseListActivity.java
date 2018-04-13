@@ -1,7 +1,5 @@
 package com.meis.base.mei;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -30,15 +28,6 @@ public abstract class BaseListActivity<T> extends BaseActivity {
 
     @Override
     protected void initView() {
-    }
-
-    @Override
-    protected void initData() {
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         mAdapter = getAdapter();
         RecyclerView recyclerView = getRecyclerView();
         if (mAdapter == null || recyclerView == null) {
@@ -58,6 +47,10 @@ public abstract class BaseListActivity<T> extends BaseActivity {
         if (loadOnInit() || !loadOnShow()) {
             loadPage(DataConstants.FIRST_PAGE);
         }
+    }
+
+    @Override
+    protected void initData() {
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.meis.base.mei;
 
+import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -29,6 +31,21 @@ public abstract class CompatActivity extends RxAppCompatActivity implements ISta
     private StatusHelper mStatusHelper = null;
 
     private Toolbar mToolbar;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTheme(R.style.MeiBaseTheme);
+        setContentView(layoutResId());
+        onSavedInstanceState(savedInstanceState);
+        //初始化View
+        initView();
+        //初始化数据
+        initData();
+    }
+
+    protected void onSavedInstanceState(@Nullable Bundle savedInstanceState) {
+    }
 
     @Override
     public void setContentView(int layoutResID) {
@@ -316,5 +333,26 @@ public abstract class CompatActivity extends RxAppCompatActivity implements ISta
     public boolean canStatusHelper() {
         return true;
     }
+
+    /**
+     * 初始化控件
+     * <p>
+     * init view
+     */
+    protected abstract void initView();
+
+    /**
+     * 初始化数据 填充数据 异步请求
+     * <p>
+     * init data
+     */
+    protected abstract void initData();
+
+    /**
+     * 填充布局资源
+     *
+     * @return
+     */
+    protected abstract int layoutResId();
 
 }

@@ -38,8 +38,6 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
 
     private StatusHelper mStatusHelper = null;
 
-    private boolean mOnCreate = false;
-
     private Toolbar mToolbar;
 
     private boolean mUserVisibleHint = true;
@@ -71,19 +69,10 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mOnCreate = true;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (mOnCreate) {
-            mOnCreate = false;
-            initView();
-            initData();
-        }
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView();
+        initData();
     }
 
     /**

@@ -25,6 +25,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 @PullToRefresh
 @PullToLoadMore
 public class PullRefreshActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
+
     @Override
     protected void initView() {
 

@@ -40,7 +40,7 @@ public class ZhihuThirdFragment extends BaseListFragment<Chat> {
 
     @Override
     protected void initView() {
-
+        super.initView();
     }
 
     @Override

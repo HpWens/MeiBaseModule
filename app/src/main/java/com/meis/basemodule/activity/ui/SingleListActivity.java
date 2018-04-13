@@ -30,6 +30,7 @@ public class SingleListActivity extends BaseListActivity<Article> {
 
     @Override
     protected void initData() {
+        super.initData();
         getToolbarView().setTitle(getResources().getString(R.string.simple_type));
         getToolbarView().setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         getToolbarView().setNavigationOnClickListener(new View.OnClickListener() {

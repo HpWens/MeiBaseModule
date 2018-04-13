@@ -23,9 +23,6 @@ public class MainFragment extends BaseFragment {
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
 
-    private static final long WAIT_TIME = 2000L;
-    private long TOUCH_TIME = 0;
-
     private BaseFragment[] mFragments = new BaseFragment[4];
     private BottomBar mBottomBar;
 
@@ -42,15 +39,11 @@ public class MainFragment extends BaseFragment {
     @Override
     protected void initView() {
         mBottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        mBottomBar.addItem(new BottomBarTab(mActivity, R.drawable.ic_home_white_24dp))
-                .addItem(new BottomBarTab(mActivity, R.drawable.ic_discover_white_24dp))
-                .addItem(new BottomBarTab(mActivity, R.drawable.ic_message_white_24dp))
-                .addItem(new BottomBarTab(mActivity, R.drawable.ic_account_circle_white_24dp));
     }
 
     @Override
     protected void initData() {
-        BaseFragment firstFragment = findFragment(ZhihuFirstFragment.class);
+        BaseFragment firstFragment = findChildFragment(ZhihuFirstFragment.class);
         if (firstFragment == null) {
             mFragments[FIRST] = ZhihuFirstFragment.newInstance();
             mFragments[SECOND] = ZhihuSecondFragment.newInstance();
@@ -67,10 +60,15 @@ public class MainFragment extends BaseFragment {
 
             // 这里我们需要拿到mFragments的引用
             mFragments[FIRST] = firstFragment;
-            mFragments[SECOND] = findFragment(ZhihuSecondFragment.class);
-            mFragments[THIRD] = findFragment(ZhihuThirdFragment.class);
-            mFragments[FOURTH] = findFragment(ZhihuFourthFragment.class);
+            mFragments[SECOND] = findChildFragment(ZhihuSecondFragment.class);
+            mFragments[THIRD] = findChildFragment(ZhihuThirdFragment.class);
+            mFragments[FOURTH] = findChildFragment(ZhihuFourthFragment.class);
         }
+
+        mBottomBar.addItem(new BottomBarTab(mActivity, R.drawable.ic_home_white_24dp))
+                .addItem(new BottomBarTab(mActivity, R.drawable.ic_discover_white_24dp))
+                .addItem(new BottomBarTab(mActivity, R.drawable.ic_message_white_24dp))
+                .addItem(new BottomBarTab(mActivity, R.drawable.ic_account_circle_white_24dp));
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override

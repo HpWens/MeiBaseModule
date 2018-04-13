@@ -1,6 +1,7 @@
 package com.meis.basemodule.fragment;
 
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.meis.base.mei.BaseActivity;

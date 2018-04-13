@@ -45,16 +45,11 @@ public class ZhihuFirstFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-    }
-
-    @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-
         if (findChildFragment(FirstHomeFragment.class) == null) {
             loadRootFragment(R.id.fl_first_container, FirstHomeFragment.newInstance());
         }
     }
+
 
     @Override
     protected int getLayoutId() {
