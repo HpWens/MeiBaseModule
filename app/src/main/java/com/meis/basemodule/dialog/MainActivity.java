@@ -22,8 +22,12 @@ public class MainActivity extends BaseActivity {
         showDialog(new CreateLiveDialog());
     }
 
-    public void clickLive(View v) {
+    public void clickLive(View view) {
         showDialog(new CreateLiveDialog());
+    }
+
+    public void clickComment(View view) {
+        showDialog(new BottomCommentDialog());
     }
 
     @Override
