@@ -24,8 +24,8 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/m_img1" />
+            android:scaleType="centerCrop"
+            android:src="@mipmap/bg_first" />
 
         <TextView
             android:id="@+id/tv"
