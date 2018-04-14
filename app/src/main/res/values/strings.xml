@@ -56,5 +56,6 @@
     <string name="favorite">收藏</string>
     <string name="more">更多</string>
 
-    <string name="click_show_dialog">拖动的提示框</string>
+    <string name="click_show_dialog">底部提示框</string>
+    <string name="click_show_comment_dialog">底部评论提示框</string>
 </resources>
