@@ -29,7 +29,7 @@ app gradle
 
 ````
 	dependencies {
-	        compile 'com.github.HpWens:MeiBaseModule:1.0.2'
+	        compile 'com.github.HpWens:MeiBaseModule:1.0.3'
 	}
 ````
 
