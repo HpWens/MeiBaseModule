@@ -25,7 +25,7 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 /**
  * author: ws4
  * created on: 2018/3/22 12:43
- * description:
+ * description: 页面状态辅助类
  */
 public class StatusHelper {
 
@@ -76,7 +76,8 @@ public class StatusHelper {
     /**
      * set layout
      *
-     * @param enableRefresh 是否下拉刷新
+     * @param enableRefresh  是否下拉刷新
+     * @param enableLoadMore 是否加载更多
      */
     public View setup(boolean enableRefresh, boolean enableLoadMore) {
         if (mView == null) {
@@ -119,7 +120,7 @@ public class StatusHelper {
     }
 
     /**
-     * set action bar layout
+     * set toolbar layout
      *
      * @param layoutResId
      * @param barHeight

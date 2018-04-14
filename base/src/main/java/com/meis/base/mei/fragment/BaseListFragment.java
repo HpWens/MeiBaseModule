@@ -1,9 +1,6 @@
 package com.meis.base.mei.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.meis.base.mei.DataConstants;
@@ -23,7 +20,7 @@ import io.reactivex.functions.Predicate;
 /**
  * author: ws4
  * created on: 2018/4/11 14:24
- * description:
+ * description: 碎片列表类
  */
 public abstract class BaseListFragment<T> extends BaseFragment {
 
@@ -48,7 +45,7 @@ public abstract class BaseListFragment<T> extends BaseFragment {
                 }
             }, recyclerView);
         }
-
+        //是否首次加载 是否每次显示加载
         if (loadOnInit() || !loadOnShow()) {
             loadPage(DataConstants.FIRST_PAGE);
         }
@@ -86,7 +83,7 @@ public abstract class BaseListFragment<T> extends BaseFragment {
      * @param pageNo
      */
     protected void loadPage(final int pageNo) {
-        if (getRecyclerView() == null || mAdapter == null) {
+        if (mAdapter == null) {
             return;
         }
         mPageNo = pageNo;
@@ -113,7 +110,7 @@ public abstract class BaseListFragment<T> extends BaseFragment {
                     public void onError(Throwable e) {
                         setRefreshing(false);
                         if (pageNo == DataConstants.FIRST_PAGE) {
-                            if (keepListOnFail() && mAdapter.getDataCount() > 0) {
+                            if (keepEmptyOnFail() && mAdapter.getDataCount() > 0) {
                                 return;
                             }
                             setState(ViewState.EMPTY);
@@ -165,14 +162,32 @@ public abstract class BaseListFragment<T> extends BaseFragment {
         return false;
     }
 
+    /**
+     * 每次界面重新显示的时候 是否加载数据
+     * true 加载
+     * false 不加载
+     *
+     * @return
+     */
     protected boolean loadOnShow() {
         return true;
     }
 
-    protected boolean keepListOnFail() {
-        return true;
+    /**
+     * false 默认第一页数据为空或加载失败 显示空界面
+     * true 不显示空界面
+     *
+     * @return false
+     */
+    protected boolean keepEmptyOnFail() {
+        return false;
     }
 
+    /**
+     * 可以重写该方法 返回每页大小 默认返回20
+     *
+     * @return
+     */
     protected int getPageSize() {
         return DataConstants.DEFAULT_PAGE_SIZE;
     }

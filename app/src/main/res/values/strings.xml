@@ -9,6 +9,7 @@
     <string name="refresh">下拉刷新，上拉加载（支持自定义刷新样式）</string>
     <string name="simple_type">单类型列表</string>
     <string name="mul_type">多类型列表</string>
+    <string name="translucent_type">透明状态栏</string>
 
     <string name="empty_type">空界面</string>
     <string name="error_type">错误界面</string>
@@ -47,4 +48,13 @@
     <string name="send">发送</string>
     <string name="user_center">个人中心</string>
     <string name="today">今天</string>
+    <string name="hint_im">和大家说点什么</string>
+    <string name="chat_header_click">头像被点击了</string>
+
+    <string name="recommend">推荐</string>
+    <string name="hot">热门</string>
+    <string name="favorite">收藏</string>
+    <string name="more">更多</string>
+
+    <string name="click_show_dialog">可以拖动的提示框</string>
 </resources>

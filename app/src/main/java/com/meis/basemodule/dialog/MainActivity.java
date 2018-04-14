@@ -1,5 +1,7 @@
 package com.meis.basemodule.dialog;
 
+import android.view.View;
+
 import com.meis.base.mei.BaseActivity;
 import com.meis.basemodule.R;
 
@@ -16,11 +18,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        getToolbarView().setTitle(getString(R.string.dialog_module));
+        showDialog(new CreateLiveDialog());
+    }
 
+    public void clickLive(View v) {
+        showDialog(new CreateLiveDialog());
     }
 
     @Override
     protected int layoutResId() {
-        return 0;
+        return R.layout.activity_dialog;
     }
 }

@@ -19,7 +19,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * author: ws4
  * created on: 2018/4/9 11:36
- * description:
+ * description: fragmentation
  */
 public abstract class BaseFragment extends CompatFragment implements ISupportFragment {
 

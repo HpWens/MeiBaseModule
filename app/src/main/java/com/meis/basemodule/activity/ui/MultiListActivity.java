@@ -31,13 +31,12 @@ import io.reactivex.Observable;
  */
 public class MultiListActivity extends BaseListActivity<Object> {
 
-    BaseMixAdapter mAdapter;
     RecyclerView mRecyclerView;
+    BaseMixAdapter mAdapter;
 
     @Override
     protected void initData() {
         super.initData();
-
         getToolbarView().setTitle(getResources().getString(R.string.mul_type));
         getToolbarView().setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         getToolbarView().setNavigationOnClickListener(new View.OnClickListener() {
@@ -55,7 +54,15 @@ public class MultiListActivity extends BaseListActivity<Object> {
         mAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
             @Override
             public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
-                return 2;
+                Object o = mAdapter.getItem(position);
+                if (o instanceof MultiBean1) {
+                    return 1;
+                } else if (o instanceof MultiBean2) {
+                    return 4;
+                } else if (o instanceof MultiBean) {
+                    return 2;
+                }
+                return 3;
             }
         });
         return mRecyclerView;

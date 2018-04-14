@@ -10,6 +10,7 @@ import com.meis.basemodule.activity.ui.MultiListActivity;
 import com.meis.basemodule.activity.ui.PullRefreshActivity;
 import com.meis.basemodule.activity.ui.SingleListActivity;
 import com.meis.basemodule.activity.ui.StatusActivity;
+import com.meis.basemodule.activity.ui.TranslucentActivity;
 
 /**
  * author: ws4
@@ -50,5 +51,9 @@ public class MainActivity extends BaseActivity {
 
     public void clickMultiList(View view) {
         startActivity(new Intent(this, MultiListActivity.class));
+    }
+
+    public void clickTranslucent(View view) {
+        startActivity(new Intent(this, TranslucentActivity.class));
     }
 }

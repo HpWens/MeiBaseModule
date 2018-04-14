@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * author: ws4
  * created on: 2018/4/8 13:56
- * description:
+ * description: 一行代码实现加载更多
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

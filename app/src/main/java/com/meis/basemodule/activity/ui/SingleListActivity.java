@@ -78,7 +78,7 @@ public class SingleListActivity extends BaseListActivity<Article> {
 
     @Override
     protected void loadPage(final int pageNo) {
-        postUiThreads(2000, new UiSubscriber<Long>() {
+        postUiThread(2000, new UiSubscriber<Long>() {
             @Override
             public void onCompleted() {
                 SingleListActivity.super.loadPage(pageNo);

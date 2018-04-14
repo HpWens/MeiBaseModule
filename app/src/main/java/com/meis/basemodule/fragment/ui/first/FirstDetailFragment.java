@@ -3,9 +3,7 @@ package com.meis.basemodule.fragment.ui.first;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +22,7 @@ public class FirstDetailFragment extends BaseFragment {
 
     private ImageView mImgDetail;
     private TextView mTvTitle;
+    private Toolbar mToolbar;
 
     public static FirstDetailFragment newInstance(Article article) {
 
@@ -44,12 +43,20 @@ public class FirstDetailFragment extends BaseFragment {
     protected void initView() {
         mImgDetail = (ImageView) findViewById(R.id.img_detail);
         mTvTitle = (TextView) findViewById(R.id.tv_content);
+        mToolbar = findViewById(R.id.toolbar);
     }
 
     @Override
     protected void initData() {
         mImgDetail.setImageResource(mArticle.getImgRes());
         mTvTitle.setText(mArticle.getTitle());
+        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop();
+            }
+        });
     }
 
     @Override

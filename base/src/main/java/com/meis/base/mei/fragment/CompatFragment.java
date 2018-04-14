@@ -17,6 +17,7 @@ import com.meis.base.mei.PullToLoadMore;
 import com.meis.base.mei.PullToRefresh;
 import com.meis.base.mei.StatusHelper;
 import com.meis.base.mei.ViewState;
+import com.meis.base.mei.dialog.BaseDialog;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.trello.rxlifecycle2.components.support.RxFragment;
@@ -41,6 +42,8 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     private Toolbar mToolbar;
 
     private boolean mUserVisibleHint = true;
+
+    private boolean mKeyboardVisible;
 
     @Nullable
     @Override
@@ -71,7 +74,9 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //初始化控件
         initView();
+        //初始化数据
         initData();
     }
 
@@ -90,7 +95,25 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
     /**
-     * type 注解 是否实现下拉刷新功能
+     * 启动软键盘的监听
+     */
+    protected void enableKeyboardVisibleListener() {
+        mKeyboardVisible = true;
+    }
+
+    public boolean getKeyboardVisible() {
+        return mKeyboardVisible;
+    }
+
+    /**
+     * @param visibility 软键盘的打开/关闭
+     */
+    public void onKeyboardVisibilityChanged(boolean visibility) {
+
+    }
+
+    /**
+     * type 一行代码实现下拉刷新
      * <p>
      * PullToRefresh inject class judge refresh
      *
@@ -101,7 +124,7 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
     /**
-     * type 注解 是否实现加载更多功能
+     * type 一行代码实现上拉加载
      *
      * @return true pull load more otherwise false
      */
@@ -110,6 +133,8 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
     /**
+     * refreshing adding asynchronous processing
+     * <p>
      * loading refresh
      */
     protected void onRefreshing() {
@@ -118,7 +143,7 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
     /**
-     * 加载更多添加异步处理
+     * load more to add asynchronous processing
      * <p>
      * loading more
      */
@@ -132,13 +157,21 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
     /**
-     * @param refreshing false auto refresh , true refreshing
+     * false 完成刷新
+     * <p>
+     * true  保留上次状态
+     *
+     * @param refreshing
      */
     public void setRefreshing(boolean refreshing) {
         mStatusHelper.setRefreshing(refreshing);
     }
 
     /**
+     * false 完成刷新
+     * <p>
+     * true  保留上次状态
+     *
      * @param loadMore
      */
     public void setLoadingMore(boolean loadMore) {
@@ -146,19 +179,11 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
 
-    /**
-     * 获取到 toolbar view
-     *
-     * @return
-     */
     public Toolbar getToolbarView() {
         ensureToolbarView();
         return mToolbar;
     }
 
-    /**
-     * 初始化 toolbar
-     */
     private void ensureToolbarView() {
         if (mToolbar == null) {
             setTitleLayout(R.layout.mei_toolbar);
@@ -284,16 +309,25 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     }
 
     /**
+     * 防止 handler 引起的内存泄漏
+     * <p>
+     * 这里没有使用Consumer是由于事件销毁不走accept方法
+     *
      * @param delay
      * @param onNext
      */
-    public void postUiThreads(long delay, Consumer<Long> onNext) {
+    public void postUiThread(long delay, Consumer<Long> onNext) {
         Observable.timer(delay, TimeUnit.MILLISECONDS)
                 .compose(this.<Long>bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onNext);
     }
 
+    /**
+     * 重写该方法
+     *
+     * @return 下拉刷新样式
+     */
     public RefreshHeader getRefreshHeader() {
         return new BezierRadarHeader(getActivity());
     }
@@ -309,51 +343,12 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
         mStatusHelper.autoRefresh();
     }
 
-    public boolean isShowing() {
-        return getUserVisibleHint() && isResumed() && !isHidden();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!isHidden() && getUserVisibleHint()) {
-            if (!super.getUserVisibleHint()) {
-                super.setUserVisibleHint(true);
-            }
-            onShow();
-        }
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        mUserVisibleHint = isVisibleToUser;
-        if (getParentFragment() != null || getActivity() != null) {
-            if (!isVisibleToUser) {
-                onHide();
-            } else {
-                onShow();
-            }
-        }
-    }
-
-    @Override
-    public boolean getUserVisibleHint() {
-        return mUserVisibleHint;
-    }
-
     /**
-     * 请调用onSupportVisible
+     * @param baseDialog
      */
-    @Deprecated
-    private void onShow() {
-    }
-
-    /**
-     * 请调用onSupportInvisible
-     */
-    @Deprecated
-    private void onHide() {
+    public void showDialog(BaseDialog baseDialog) {
+        getActivity().getSupportFragmentManager().beginTransaction().add(baseDialog, "dialog_" + baseDialog.getClass
+                ().getSimpleName()).commitAllowingStateLoss();
     }
 
     protected abstract void initView();

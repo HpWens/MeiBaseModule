@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,11 +10,11 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recy"
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@android:color/white" />
+            android:background="@android:color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -23,8 +23,7 @@
         android:layout_gravity="bottom"
         android:background="@android:color/white"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="8dp"
         android:tag="input">
 
         <EditText
@@ -32,15 +31,20 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/bottombar_height"
             android:layout_weight="1"
-            android:singleLine="true" />
+            android:background="@drawable/bg_chat_input"
+            android:hint="@string/hint_im"
+            android:singleLine="true"
+            android:textSize="14sp"/>
 
-        <Button
+        <TextView
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="@string/send"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"/>
     </LinearLayout>
 
     <ImageView
@@ -48,6 +52,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginBottom="@dimen/bottombar_height"
-        android:background="@drawable/actionbar_shadow_up" />
+        android:background="@drawable/actionbar_shadow_up"/>
 
 </FrameLayout>

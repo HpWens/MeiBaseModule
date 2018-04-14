@@ -54,8 +54,7 @@ public class DingDangHeader extends LinearLayout implements RefreshHeader {
         super(context, attrs, defStyleAttr);
         setOrientation(HORIZONTAL);
         this.mContent = context;
-        View view = LayoutInflater.from(mContent).inflate(R.layout.mei_dingdang_refresh_header,
-                null);
+        View view = LayoutInflater.from(mContent).inflate(R.layout.mei_dingdang_refresh_header, null);
         mIvDingDang = view.findViewById(R.id.refresh_image);
         mTvStatus = view.findViewById(R.id.refresh_text);
         addView(view);

@@ -1,18 +1,7 @@
 package com.meis.basemodule.fragment;
 
-import android.support.v4.app.ActivityCompat;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.meis.base.mei.BaseActivity;
-import com.meis.base.mei.fragment.BaseFragment;
 import com.meis.basemodule.R;
-import com.meis.basemodule.fragment.ui.first.ZhihuFirstFragment;
-import com.meis.basemodule.fragment.ui.fourth.ZhihuFourthFragment;
-import com.meis.basemodule.fragment.ui.second.ZhihuSecondFragment;
-import com.meis.basemodule.fragment.ui.third.ZhihuThirdFragment;
-import com.meis.basemodule.widget.BottomBar;
-import com.meis.basemodule.widget.BottomBarTab;
 
 /**
  * author: ws4
@@ -20,7 +9,6 @@ import com.meis.basemodule.widget.BottomBarTab;
  * description:
  */
 public class MainActivity extends BaseActivity {
-
 
     @Override
     protected void initView() {
@@ -32,10 +20,12 @@ public class MainActivity extends BaseActivity {
         if (findFragment(MainFragment.class) == null) {
             loadRootFragment(R.id.fl_container, MainFragment.newInstance());
         }
+        enableKeyboardVisibilityListener();
     }
 
     @Override
     protected int layoutResId() {
-        return R.layout.wechat_activity_main;
+        return R.layout.zhihu_activity_main;
     }
+
 }

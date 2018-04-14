@@ -18,7 +18,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * author: ws4
  * created on: 2018/3/22 12:29
- * description:
+ * description: fragmentation
  */
 public abstract class BaseActivity extends CompatActivity implements ISupportActivity {
 

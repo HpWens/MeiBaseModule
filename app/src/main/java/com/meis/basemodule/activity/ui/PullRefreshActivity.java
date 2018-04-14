@@ -56,7 +56,7 @@ public class PullRefreshActivity extends BaseActivity implements Toolbar.OnMenuI
     @Override
     protected void onRefreshing() {
         super.onRefreshing();
-        postUiThreads(2000, new UiSubscriber<Long>() {
+        postUiThread(2000, new UiSubscriber<Long>() {
             @Override
             public void onCompleted() {
                 Toast.makeText(PullRefreshActivity.this, getResources().getString(R.string
@@ -69,7 +69,7 @@ public class PullRefreshActivity extends BaseActivity implements Toolbar.OnMenuI
     @Override
     protected void onLoadingMore() {
         super.onLoadingMore();
-        postUiThreads(2000, new UiSubscriber<Long>() {
+        postUiThread(2000, new UiSubscriber<Long>() {
             @Override
             public void onCompleted() {
                 Toast.makeText(PullRefreshActivity.this, getResources().getString(R.string

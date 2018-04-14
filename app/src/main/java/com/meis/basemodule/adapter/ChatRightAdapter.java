@@ -6,20 +6,20 @@ import com.meis.basemodule.R;
 import com.meis.basemodule.entity.Chat;
 
 /**
- * author: ws4
- * created on: 2018/4/12 18:00
- * description:
+ * desc:
+ * author: ws
+ * date: 2018/4/13.
  */
-public class ChatAdapter extends BaseAdapter<Chat> {
 
-    public ChatAdapter() {
-        super(R.layout.item_zhihu_chat);
+public class ChatRightAdapter extends BaseAdapter<Chat> {
+
+    public ChatRightAdapter() {
+        super(R.layout.item_zhihu_msg);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, Chat item) {
-        helper.setText(R.id.tv_name, item.name)
-                .setText(R.id.tv_msg, item.message);
-
+        helper.setText(R.id.tv_msg, item.message)
+                .addOnClickListener(R.id.img_avatar);
     }
 }
