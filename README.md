@@ -9,7 +9,7 @@ A powerful multi-function library that extended base activity for Android!
 
 ## 引入
 
-###Step 1. Add the JitPack repository to your build file
+### Step 1. Add the JitPack repository to your build file
 
 root gradle
 
@@ -23,7 +23,7 @@ root gradle
 
 ````
 
-###Step 2. Add the dependency
+### Step 2. Add the dependency
 
 app gradle 
 
