@@ -7,6 +7,32 @@
 # MeiBaseModule
 A powerful multi-function library that extended base activity for Android!
 
+## 引入
+
+###Step 1. Add the JitPack repository to your build file
+
+root gradle
+
+````
+    allprojects {
+        repositories {
+            ...
+            maven { url "https://jitpack.io" }
+        }
+    }
+
+````
+
+###Step 2. Add the dependency
+
+app gradle 
+
+````
+	dependencies {
+	        compile 'com.github.HpWens:MeiBaseModule:1.0.2'
+	}
+````
+
 ## LICENSE
 ````
 Copyright 2018 文淑
