@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.meis.base.mei.BaseListActivity;
-import com.meis.base.mei.adapter.BaseAdapter;
-import com.meis.base.mei.adapter.BaseMixAdapter;
+import com.meis.base.mei.MeiBaseListActivity;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseMixAdapter;
 import com.meis.base.mei.entity.Result;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.MultiAdapter;
@@ -29,10 +29,10 @@ import io.reactivex.Observable;
  * created on: 2018/4/11 15:33
  * description:
  */
-public class MultiListActivity extends BaseListActivity<Object> {
+public class MultiListActivity extends MeiBaseListActivity<Object> {
 
     RecyclerView mRecyclerView;
-    BaseMixAdapter mAdapter;
+    MeiBaseMixAdapter mAdapter;
 
     @Override
     protected void initData() {
@@ -69,8 +69,8 @@ public class MultiListActivity extends BaseListActivity<Object> {
     }
 
     @Override
-    protected BaseAdapter<Object> getAdapter() {
-        mAdapter = new BaseMixAdapter();
+    protected MeiBaseAdapter<Object> getAdapter() {
+        mAdapter = new MeiBaseMixAdapter();
         mAdapter.addItemPresenter(new MultiAdapter1());
         mAdapter.addItemPresenter(new MultiAdapter2());
         mAdapter.addItemPresenter(new MultiAdapter3());

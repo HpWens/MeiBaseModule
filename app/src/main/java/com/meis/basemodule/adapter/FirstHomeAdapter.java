@@ -3,7 +3,7 @@ package com.meis.basemodule.adapter;
 import android.support.v4.view.ViewCompat;
 
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.basemodule.R;
 import com.meis.basemodule.entity.Article;
 
@@ -12,7 +12,7 @@ import com.meis.basemodule.entity.Article;
  * created on: 2018/4/12 16:31
  * description:
  */
-public class FirstHomeAdapter extends BaseAdapter<Article> {
+public class FirstHomeAdapter extends MeiBaseAdapter<Article> {
 
     public FirstHomeAdapter() {
         super(R.layout.item_zhihu_home_first);

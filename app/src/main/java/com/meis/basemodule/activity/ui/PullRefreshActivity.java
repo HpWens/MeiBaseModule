@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.meis.base.mei.BaseActivity;
+import com.meis.base.mei.MeiBaseActivity;
 import com.meis.base.mei.PullToLoadMore;
 import com.meis.base.mei.PullToRefresh;
 import com.meis.base.mei.ViewState;
@@ -24,7 +24,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
  */
 @PullToRefresh
 @PullToLoadMore
-public class PullRefreshActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
+public class PullRefreshActivity extends MeiBaseActivity implements Toolbar.OnMenuItemClickListener {
 
     @Override
     protected void initView() {

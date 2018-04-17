@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.meis.base.mei.BaseActivity;
+import com.meis.base.mei.MeiBaseActivity;
 import com.meis.base.mei.ViewState;
 import com.meis.basemodule.R;
 
@@ -16,7 +16,7 @@ import com.meis.basemodule.R;
  * created on: 2018/4/11 15:31
  * description:
  */
-public class StatusActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
+public class StatusActivity extends MeiBaseActivity implements Toolbar.OnMenuItemClickListener {
     @Override
     protected void initView() {
 

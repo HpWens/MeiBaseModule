@@ -1,7 +1,7 @@
 package com.meis.basemodule.adapter;
 
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.basemodule.R;
 import com.meis.basemodule.entity.Article;
 
@@ -10,7 +10,7 @@ import com.meis.basemodule.entity.Article;
  * created on: 2018/4/11 17:40
  * description:
  */
-public class MeiSimpleAdapter extends BaseAdapter<Article> {
+public class MeiSimpleAdapter extends MeiBaseAdapter<Article> {
 
     public MeiSimpleAdapter() {
         super(R.layout.item_comm);

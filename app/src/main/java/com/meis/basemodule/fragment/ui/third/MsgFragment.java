@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.meis.base.mei.fragment.BaseFragment;
+import com.meis.base.mei.fragment.MeiBaseFragment;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.ChatRightAdapter;
 import com.meis.basemodule.entity.Chat;
@@ -18,7 +18,7 @@ import com.meis.basemodule.entity.Chat;
  * created on: 2018/4/13 11:18
  * description:
  */
-public class MsgFragment extends BaseFragment {
+public class MsgFragment extends MeiBaseFragment {
 
     private static final String ARG_MSG = "arg_msg";
 

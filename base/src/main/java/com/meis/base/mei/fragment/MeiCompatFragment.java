@@ -17,7 +17,7 @@ import com.meis.base.mei.PullToLoadMore;
 import com.meis.base.mei.PullToRefresh;
 import com.meis.base.mei.StatusHelper;
 import com.meis.base.mei.ViewState;
-import com.meis.base.mei.dialog.BaseDialog;
+import com.meis.base.mei.dialog.MeiBaseDialog;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.trello.rxlifecycle2.components.support.RxFragment;
@@ -33,7 +33,7 @@ import io.reactivex.functions.Consumer;
  * created on: 2018/4/8 14:36
  * description:
  */
-public abstract class CompatFragment extends RxFragment implements IStatusHelper {
+public abstract class MeiCompatFragment extends RxFragment implements IStatusHelper {
 
     protected final String TAG = getClass().getSimpleName();
 
@@ -346,7 +346,7 @@ public abstract class CompatFragment extends RxFragment implements IStatusHelper
     /**
      * @param baseDialog
      */
-    public void showDialog(BaseDialog baseDialog) {
+    public void showDialog(MeiBaseDialog baseDialog) {
         getActivity().getSupportFragmentManager().beginTransaction().add(baseDialog, "dialog_" + baseDialog.getClass
                 ().getSimpleName()).commitAllowingStateLoss();
     }

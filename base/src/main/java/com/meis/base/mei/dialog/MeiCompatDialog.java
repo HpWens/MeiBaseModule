@@ -20,7 +20,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatDialogFragment;
  * created on: 2018/4/11 14:06
  * description:
  */
-public class CompatDialog extends RxAppCompatDialogFragment {
+public class MeiCompatDialog extends RxAppCompatDialogFragment {
 
     protected final String TAG = getClass().getSimpleName();
 

@@ -1,20 +1,16 @@
 package com.meis.basemodule.fragment.ui.first;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Fade;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.base.mei.entity.Result;
-import com.meis.base.mei.fragment.BaseListFragment;
+import com.meis.base.mei.fragment.MeiBaseListFragment;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.FirstHomeAdapter;
-import com.meis.basemodule.adapter.MeiSimpleAdapter;
 import com.meis.basemodule.entity.Article;
 
 import java.util.ArrayList;
@@ -25,7 +21,7 @@ import io.reactivex.Observable;
 /**
  * Created by YoKeyword on 16/6/5.
  */
-public class FirstHomeFragment extends BaseListFragment<Article> {
+public class FirstHomeFragment extends MeiBaseListFragment<Article> {
 
     private String[] mTitles = new String[]{
             "Use imagery to express a distinctive voice and exemplify creative excellence.",
@@ -66,7 +62,7 @@ public class FirstHomeFragment extends BaseListFragment<Article> {
     }
 
     @Override
-    protected BaseAdapter<Article> getAdapter() {
+    protected MeiBaseAdapter<Article> getAdapter() {
         FirstHomeAdapter adapter = new FirstHomeAdapter();
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

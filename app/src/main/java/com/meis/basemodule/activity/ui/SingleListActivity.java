@@ -4,9 +4,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.meis.base.mei.BaseListActivity;
+import com.meis.base.mei.MeiBaseListActivity;
 import com.meis.base.mei.ViewState;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.base.mei.entity.Result;
 import com.meis.base.mei.rxjava.UiSubscriber;
 import com.meis.basemodule.R;
@@ -23,7 +23,7 @@ import io.reactivex.Observable;
  * created on: 2018/4/11 15:32
  * description:
  */
-public class SingleListActivity extends BaseListActivity<Article> {
+public class SingleListActivity extends MeiBaseListActivity<Article> {
 
     RecyclerView mRecyclerView;
     MeiSimpleAdapter mAdapter;
@@ -51,7 +51,7 @@ public class SingleListActivity extends BaseListActivity<Article> {
     }
 
     @Override
-    protected BaseAdapter<Article> getAdapter() {
+    protected MeiBaseAdapter<Article> getAdapter() {
         return mAdapter = new MeiSimpleAdapter();
     }
 

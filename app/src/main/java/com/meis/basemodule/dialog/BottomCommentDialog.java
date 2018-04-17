@@ -6,7 +6,7 @@ import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.meis.base.mei.dialog.BaseDialog;
+import com.meis.base.mei.dialog.MeiBaseDialog;
 import com.meis.basemodule.R;
 
 /**
@@ -15,7 +15,7 @@ import com.meis.basemodule.R;
  * date: 2018/4/14.
  */
 
-public class BottomCommentDialog extends BaseDialog {
+public class BottomCommentDialog extends MeiBaseDialog {
 
     @Override
     protected int getLayoutId() {

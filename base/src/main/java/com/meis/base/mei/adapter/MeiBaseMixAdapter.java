@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 多种类型混合的适配器
  */
-public class BaseMixAdapter extends BaseAdapter<Object> {
+public class MeiBaseMixAdapter extends MeiBaseAdapter<Object> {
 
     private SparseArray<ItemPresenter> mItemPresenters = new SparseArray<>();
 
@@ -36,7 +36,7 @@ public class BaseMixAdapter extends BaseAdapter<Object> {
      */
     private boolean mFilterUnique = true;
 
-    public BaseMixAdapter(List data, ItemPresenter... itemPresenters) {
+    public MeiBaseMixAdapter(List data, ItemPresenter... itemPresenters) {
         super(data);
         setHasStableIds(true);
         for (ItemPresenter itemPresenter : itemPresenters) {
@@ -44,7 +44,7 @@ public class BaseMixAdapter extends BaseAdapter<Object> {
         }
     }
 
-    public BaseMixAdapter(ItemPresenter... itemPresenters) {
+    public MeiBaseMixAdapter(ItemPresenter... itemPresenters) {
         super();
         setHasStableIds(true);
         for (ItemPresenter itemPresenter : itemPresenters) {

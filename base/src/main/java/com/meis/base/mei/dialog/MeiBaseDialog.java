@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * created on: 2018/4/11 14:12
  * description:
  */
-public abstract class BaseDialog extends CompatDialog {
+public abstract class MeiBaseDialog extends MeiCompatDialog {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

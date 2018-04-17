@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.meis.base.mei.DataConstants;
 import com.meis.base.mei.ViewState;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.base.mei.entity.Result;
 import com.meis.base.mei.utils.ListUtils;
 
@@ -22,9 +22,9 @@ import io.reactivex.functions.Predicate;
  * created on: 2018/4/11 14:24
  * description: 碎片列表类
  */
-public abstract class BaseListFragment<T> extends BaseFragment {
+public abstract class MeiBaseListFragment<T> extends MeiBaseFragment {
 
-    protected BaseAdapter<T> mAdapter;
+    protected MeiBaseAdapter<T> mAdapter;
 
     private int mPageNo;
 
@@ -194,7 +194,7 @@ public abstract class BaseListFragment<T> extends BaseFragment {
 
     protected abstract RecyclerView getRecyclerView();
 
-    protected abstract BaseAdapter<T> getAdapter();
+    protected abstract MeiBaseAdapter<T> getAdapter();
 
     protected abstract Observable<Result<List<T>>> getListObservable(int pageNo);
 

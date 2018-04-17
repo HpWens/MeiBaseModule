@@ -2,7 +2,7 @@ package com.meis.basemodule.fragment;
 
 import android.os.Bundle;
 
-import com.meis.base.mei.fragment.BaseFragment;
+import com.meis.base.mei.fragment.MeiBaseFragment;
 import com.meis.basemodule.R;
 import com.meis.basemodule.fragment.ui.first.ZhihuFirstFragment;
 import com.meis.basemodule.fragment.ui.fourth.ZhihuFourthFragment;
@@ -16,14 +16,14 @@ import com.meis.basemodule.widget.BottomBarTab;
  * created on: 2018/4/13 11:13
  * description:
  */
-public class MainFragment extends BaseFragment {
+public class MainFragment extends MeiBaseFragment {
 
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
 
-    private BaseFragment[] mFragments = new BaseFragment[4];
+    private MeiBaseFragment[] mFragments = new MeiBaseFragment[4];
     private BottomBar mBottomBar;
 
     public static MainFragment newInstance() {
@@ -43,7 +43,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        BaseFragment firstFragment = findChildFragment(ZhihuFirstFragment.class);
+        MeiBaseFragment firstFragment = findChildFragment(ZhihuFirstFragment.class);
         if (firstFragment == null) {
             mFragments[FIRST] = ZhihuFirstFragment.newInstance();
             mFragments[SECOND] = ZhihuSecondFragment.newInstance();

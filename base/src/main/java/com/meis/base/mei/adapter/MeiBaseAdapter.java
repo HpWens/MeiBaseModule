@@ -14,7 +14,7 @@ import java.util.List;
  * created on: 2018/4/11 13:41
  * description:
  */
-public abstract class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> {
+public abstract class MeiBaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> {
 
     /**
      * 当前页码
@@ -22,19 +22,19 @@ public abstract class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder>
      */
     private int mPageCount;
 
-    public BaseAdapter(int layoutResId, @Nullable List<T> data) {
+    public MeiBaseAdapter(int layoutResId, @Nullable List<T> data) {
         super(layoutResId, data);
     }
 
-    public BaseAdapter(@Nullable List<T> data) {
+    public MeiBaseAdapter(@Nullable List<T> data) {
         super(data);
     }
 
-    public BaseAdapter(int layoutResId) {
+    public MeiBaseAdapter(int layoutResId) {
         super(layoutResId);
     }
 
-    public BaseAdapter() {
+    public MeiBaseAdapter() {
         super(0);
     }
 

@@ -2,7 +2,7 @@ package com.meis.basemodule.activity.ui;
 
 import android.view.View;
 
-import com.meis.base.mei.BaseActivity;
+import com.meis.base.mei.MeiBaseActivity;
 import com.meis.base.mei.ViewState;
 import com.meis.basemodule.R;
 
@@ -11,7 +11,7 @@ import com.meis.basemodule.R;
  * created on: 2018/4/11 15:31
  * description:
  */
-public class CustomEmptyActivity extends BaseActivity {
+public class CustomEmptyActivity extends MeiBaseActivity {
     @Override
     protected void initView() {
 

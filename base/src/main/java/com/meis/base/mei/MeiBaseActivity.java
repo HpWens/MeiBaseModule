@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 
-import com.meis.base.mei.fragment.BaseFragment;
+import com.meis.base.mei.fragment.MeiBaseFragment;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
@@ -20,7 +20,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * created on: 2018/3/22 12:29
  * description: fragmentation
  */
-public abstract class BaseActivity extends CompatActivity implements ISupportActivity {
+public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupportActivity {
 
     final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
 
@@ -176,14 +176,14 @@ public abstract class BaseActivity extends CompatActivity implements ISupportAct
     /**
      * 同 Activity 的 startActivity
      * <p>
-     * It is recommended to use {@link BaseFragment# start(ISupportFragment)}.
+     * It is recommended to use {@link MeiBaseFragment# start(ISupportFragment)}.
      */
     public void start(ISupportFragment toFragment) {
         mDelegate.start(toFragment);
     }
 
     /**
-     * It is recommended to use {@link BaseFragment# start(ISupportFragment, int)}.
+     * It is recommended to use {@link MeiBaseFragment# start(ISupportFragment, int)}.
      *
      * @param launchMode Similar to Activity's LaunchMode.
      */
@@ -192,7 +192,7 @@ public abstract class BaseActivity extends CompatActivity implements ISupportAct
     }
 
     /**
-     * It is recommended to use {@link BaseFragment# startForResult(ISupportFragment, int)}.
+     * It is recommended to use {@link MeiBaseFragment# startForResult(ISupportFragment, int)}.
      * Launch an fragment for which you would like a result when it poped.
      */
     public void startForResult(ISupportFragment toFragment, int requestCode) {
@@ -200,7 +200,7 @@ public abstract class BaseActivity extends CompatActivity implements ISupportAct
     }
 
     /**
-     * It is recommended to use {@link BaseFragment# startWithPop(ISupportFragment)}.
+     * It is recommended to use {@link MeiBaseFragment# startWithPop(ISupportFragment)}.
      * Start the target Fragment and pop itself
      */
     public void startWithPop(ISupportFragment toFragment) {
@@ -209,7 +209,7 @@ public abstract class BaseActivity extends CompatActivity implements ISupportAct
 
     /**
      * It is recommended to use
-     * {@link BaseFragment# startWithPopTo(ISupportFragment, Class, boolean)}.
+     * {@link MeiBaseFragment# startWithPopTo(ISupportFragment, Class, boolean)}.
      *
      * @see #popTo(Class, boolean)
      * +
@@ -221,7 +221,7 @@ public abstract class BaseActivity extends CompatActivity implements ISupportAct
     }
 
     /**
-     * It is recommended to use {@link BaseFragment# replaceFragment(ISupportFragment, boolean)}.
+     * It is recommended to use {@link MeiBaseFragment# replaceFragment(ISupportFragment, boolean)}.
      */
     public void replaceFragment(ISupportFragment toFragment, boolean addToBackStack) {
         mDelegate.replaceFragment(toFragment, addToBackStack);

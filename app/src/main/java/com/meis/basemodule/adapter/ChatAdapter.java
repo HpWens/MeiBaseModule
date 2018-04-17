@@ -1,7 +1,7 @@
 package com.meis.basemodule.adapter;
 
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.basemodule.R;
 import com.meis.basemodule.entity.Chat;
 
@@ -10,7 +10,7 @@ import com.meis.basemodule.entity.Chat;
  * created on: 2018/4/12 18:00
  * description:
  */
-public class ChatAdapter extends BaseAdapter<Chat> {
+public class ChatAdapter extends MeiBaseAdapter<Chat> {
 
     public ChatAdapter() {
         super(R.layout.item_zhihu_chat);

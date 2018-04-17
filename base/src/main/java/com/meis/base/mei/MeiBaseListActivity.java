@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.base.mei.entity.Result;
 import com.meis.base.mei.utils.ListUtils;
 
@@ -22,9 +22,9 @@ import io.reactivex.functions.Predicate;
  * created on: 2018/4/11 18:14
  * description: 基类列表活动
  */
-public abstract class BaseListActivity<T> extends BaseActivity {
+public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
 
-    protected BaseAdapter<T> mAdapter;
+    protected MeiBaseAdapter<T> mAdapter;
 
     //当前页码
     private int mPageNo;
@@ -213,7 +213,7 @@ public abstract class BaseListActivity<T> extends BaseActivity {
 
     protected abstract RecyclerView getRecyclerView();
 
-    protected abstract BaseAdapter<T> getAdapter();
+    protected abstract MeiBaseAdapter<T> getAdapter();
 
     /**
      * Result 实体类下个版本会优化

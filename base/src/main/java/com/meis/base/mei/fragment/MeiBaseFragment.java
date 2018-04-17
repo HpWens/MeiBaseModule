@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.Animation;
 
 import com.meis.base.R;
-import com.meis.base.mei.CompatActivity;
+import com.meis.base.mei.MeiCompatActivity;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
@@ -21,7 +21,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * created on: 2018/4/9 11:36
  * description: fragmentation
  */
-public abstract class BaseFragment extends CompatFragment implements ISupportFragment {
+public abstract class MeiBaseFragment extends MeiCompatFragment implements ISupportFragment {
 
     final SupportFragmentDelegate mDelegate = new SupportFragmentDelegate(this);
 
@@ -293,8 +293,8 @@ public abstract class BaseFragment extends CompatFragment implements ISupportFra
     }
 
     public void loadRootFragment(ISupportFragment toFragment) {
-        if (mActivity != null && mActivity instanceof CompatActivity) {
-            if (((CompatActivity) mActivity).canStatusHelper()) {
+        if (mActivity != null && mActivity instanceof MeiCompatActivity) {
+            if (((MeiCompatActivity) mActivity).canStatusHelper()) {
                 mDelegate.loadRootFragment(R.id.base_main, toFragment);
             } else {
                 throw new RuntimeException("method canStatusHelper can not return false ");

@@ -3,7 +3,7 @@ package com.meis.basemodule.activity;
 import android.content.Intent;
 import android.view.View;
 
-import com.meis.base.mei.BaseActivity;
+import com.meis.base.mei.MeiBaseActivity;
 import com.meis.basemodule.R;
 import com.meis.basemodule.activity.ui.CustomEmptyActivity;
 import com.meis.basemodule.activity.ui.MultiListActivity;
@@ -17,7 +17,7 @@ import com.meis.basemodule.activity.ui.TranslucentActivity;
  * created on: 2018/4/11 15:04
  * description:
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends MeiBaseActivity {
     @Override
     protected void initView() {
 

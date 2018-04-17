@@ -3,20 +3,17 @@ package com.meis.basemodule.fragment.ui.third;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.meis.base.mei.adapter.BaseAdapter;
+import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.base.mei.entity.Result;
-import com.meis.base.mei.fragment.BaseListFragment;
+import com.meis.base.mei.fragment.MeiBaseListFragment;
 import com.meis.base.mei.header.DingDangHeader;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.ChatAdapter;
 import com.meis.basemodule.entity.Chat;
-import com.meis.basemodule.fragment.MainActivity;
 import com.meis.basemodule.fragment.MainFragment;
-import com.meis.basemodule.fragment.ui.fourth.ZhihuFourthFragment;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ import io.reactivex.Observable;
 /**
  * Created by YoKeyword on 16/6/3.
  */
-public class ZhihuThirdFragment extends BaseListFragment<Chat> {
+public class ZhihuThirdFragment extends MeiBaseListFragment<Chat> {
 
     public static ZhihuThirdFragment newInstance() {
 
@@ -56,7 +53,7 @@ public class ZhihuThirdFragment extends BaseListFragment<Chat> {
     }
 
     @Override
-    protected BaseAdapter<Chat> getAdapter() {
+    protected MeiBaseAdapter<Chat> getAdapter() {
         ChatAdapter chatAdapter = new ChatAdapter();
         chatAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

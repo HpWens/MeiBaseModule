@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.meis.base.R;
-import com.meis.base.mei.dialog.BaseDialog;
-import com.meis.base.mei.fragment.CompatFragment;
+import com.meis.base.mei.dialog.MeiBaseDialog;
+import com.meis.base.mei.fragment.MeiCompatFragment;
 import com.meis.base.mei.rxjava.UiSubscriber;
 import com.meis.base.mei.utils.SoftKeyboardUtils;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -32,7 +32,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * created on: 2018/3/22 12:29
  * description:
  */
-public abstract class CompatActivity extends RxAppCompatActivity implements IStatusHelper {
+public abstract class MeiCompatActivity extends RxAppCompatActivity implements IStatusHelper {
 
     protected String TAG = getClass().getSimpleName();
 
@@ -231,8 +231,8 @@ public abstract class CompatActivity extends RxAppCompatActivity implements ISta
     private void notifyKeyboardVisibilityChanged(boolean keyboardOpened) {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
         for (Fragment fragment : fragments) {
-            if (fragment instanceof CompatFragment) {
-                CompatFragment compatFragment = (CompatFragment) fragment;
+            if (fragment instanceof MeiCompatFragment) {
+                MeiCompatFragment compatFragment = (MeiCompatFragment) fragment;
                 if (compatFragment.getKeyboardVisible()) {
                     compatFragment.onKeyboardVisibilityChanged(keyboardOpened);
                 }
@@ -521,7 +521,7 @@ public abstract class CompatActivity extends RxAppCompatActivity implements ISta
     /**
      * @param baseDialog
      */
-    public void showDialog(BaseDialog baseDialog) {
+    public void showDialog(MeiBaseDialog baseDialog) {
         getSupportFragmentManager().beginTransaction().add(baseDialog, "dialog_" + baseDialog.getClass
                 ().getSimpleName()).commitAllowingStateLoss();
     }

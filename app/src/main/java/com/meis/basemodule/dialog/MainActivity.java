@@ -2,7 +2,7 @@ package com.meis.basemodule.dialog;
 
 import android.view.View;
 
-import com.meis.base.mei.BaseActivity;
+import com.meis.base.mei.MeiBaseActivity;
 import com.meis.basemodule.R;
 
 /**
@@ -10,7 +10,7 @@ import com.meis.basemodule.R;
  * created on: 2018/4/11 15:06
  * description:
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends MeiBaseActivity {
     @Override
     protected void initView() {
 

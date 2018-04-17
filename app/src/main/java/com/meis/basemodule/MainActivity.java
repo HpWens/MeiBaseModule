@@ -4,9 +4,9 @@ package com.meis.basemodule;
 import android.content.Intent;
 import android.view.View;
 
-import com.meis.base.mei.BaseActivity;
+import com.meis.base.mei.MeiBaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends MeiBaseActivity {
 
     @Override
     protected int layoutResId() {
