@@ -29,7 +29,7 @@ app gradle
 
 ````
 	dependencies {
-	        compile 'com.github.HpWens:MeiBaseModule:1.0.3'
+	        compile 'com.github.HpWens:MeiBaseModule:1.0.4'
 	}
 ````
 
@@ -63,10 +63,9 @@ app gradle
 //效果见图2
 @PullToRefresh  // 一行代码 注入下拉刷新功能
 @PullToLoadMore // 注入上拉加载
-public class PullRefreshActivity extends BaseActivity {
-// 需要继承 BaseActivity ; 同理 Fragment 继承 BaseFragment ; Dialog 继承 BaseDialog 
-// 继承的代价太大，后期版本会替换成接口加委托的方式
-// 如果本地有维护自己的 Base基类 请注意导包
+public class PullRefreshActivity extends MeiBaseActivity {
+// 需要继承 MeiBaseActivity ; 同理 Fragment 继承 MeiBaseFragment ; Dialog 继承 MeiBaseDialog 
+// 继承的代价太大，后期版本会优化
 
     @Override
     protected void initView() {
