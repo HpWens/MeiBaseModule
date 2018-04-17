@@ -33,6 +33,10 @@ app gradle
 	}
 ````
 
+### Step 3. extends MeiBase_
+
+Activity extends MeiBaseActivity ,  Fragment extends MeiBaseFragment ,  Dialog extends MeiBaseDialog 
+
 ## Preview
 
 <img src="/gif/demo1.gif" width="280px"/> <img src="/gif/demo2.gif" width="280px"/>
