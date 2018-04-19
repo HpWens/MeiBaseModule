@@ -3,14 +3,14 @@ package com.meis.basemodule.fragment.ui.second;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.meis.base.mei.fragment.MeiBaseFragment;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseFragment;
 
 
 /**
  * Created by YoKeyword on 16/6/30.
  */
-public class OtherPagerFragment extends MeiBaseFragment {
+public class OtherPagerFragment extends BaseFragment {
 
     private static final String ARG_MSG = "arg_msg";
 

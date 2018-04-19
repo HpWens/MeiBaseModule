@@ -1,13 +1,13 @@
-package com.meis.base.mei;
+package com.meis.basemodule.base;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.meis.base.mei.adapter.MeiBaseAdapter;
-import com.meis.base.mei.entity.Result;
-import com.meis.base.mei.utils.ListUtils;
+import com.meis.base.mei.status.ViewState;
+import com.meis.basemodule.constant.DataConstants;
+import com.meis.basemodule.entity.Result;
+import com.meis.basemodule.utils.ListUtils;
 
 import java.util.List;
 
@@ -18,20 +18,18 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Predicate;
 
 /**
- * author: ws4
- * created on: 2018/4/11 18:14
- * description: 基类列表活动
+ * desc:
+ * author: ws
+ * date: 2018/4/19.
  */
-public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
 
+public abstract class BaseListFragment<T> extends BaseFragment {
     protected MeiBaseAdapter<T> mAdapter;
 
-    //当前页码
     private int mPageNo;
 
     @Override
-    protected void onSavedInstanceState(@Nullable Bundle savedInstanceState) {
-        super.onSavedInstanceState(savedInstanceState);
+    protected void initView() {
         mAdapter = getAdapter();
         RecyclerView recyclerView = getRecyclerView();
         if (mAdapter == null || recyclerView == null) {
@@ -47,15 +45,10 @@ public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
                 }
             }, recyclerView);
         }
-        //是否首次加载 是否每次可见加载
+        //是否首次加载 是否每次显示加载
         if (loadOnInit() || !loadOnShow()) {
             loadPage(DataConstants.FIRST_PAGE);
         }
-    }
-
-    @Override
-    protected void initView() {
-
     }
 
     @Override
@@ -64,36 +57,28 @@ public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void onSupportVisible() {
+        super.onSupportVisible();
         if (loadOnShow()) {
             loadPage(DataConstants.FIRST_PAGE);
         }
     }
 
     @Override
-    protected void onRefreshing() {
+    public void onRefreshing() {
         loadPage(DataConstants.FIRST_PAGE);
     }
 
-    /**
-     * 设置当前页码
-     *
-     * @param pageNo
-     */
     public void setPageNo(int pageNo) {
         this.mPageNo = pageNo;
     }
 
-    /**
-     * 重新加载
-     */
     protected void reload() {
         loadPage(DataConstants.FIRST_PAGE);
     }
 
     /**
-     * 按页码加载数据 默认一页大小20 可以重写{@link #getPageSize()} 的返回页码大小
+     * 当前页数加载数据
      *
      * @param pageNo
      */
@@ -125,7 +110,7 @@ public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
                     public void onError(Throwable e) {
                         setRefreshing(false);
                         if (pageNo == DataConstants.FIRST_PAGE) {
-                            if (keepEmptyOnFirstPage() && mAdapter.getDataCount() > 0) {
+                            if (keepEmptyOnFail() && mAdapter.getDataCount() > 0) {
                                 return;
                             }
                             setState(ViewState.EMPTY);
@@ -173,16 +158,12 @@ public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
         }
     }
 
-    /**
-     * @return
-     */
     protected boolean loadOnInit() {
         return false;
     }
 
     /**
      * 每次界面重新显示的时候 是否加载数据
-     * <br/>
      * true 加载
      * false 不加载
      *
@@ -198,12 +179,12 @@ public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
      *
      * @return false
      */
-    protected boolean keepEmptyOnFirstPage() {
+    protected boolean keepEmptyOnFail() {
         return false;
     }
 
     /**
-     * 可以重写该方法 返回每页大小
+     * 可以重写该方法 返回每页大小 默认返回20
      *
      * @return
      */
@@ -215,26 +196,10 @@ public abstract class MeiBaseListActivity<T> extends MeiBaseActivity {
 
     protected abstract MeiBaseAdapter<T> getAdapter();
 
-    /**
-     * Result 实体类下个版本会优化
-     *
-     * @param pageNo
-     * @return
-     */
     protected abstract Observable<Result<List<T>>> getListObservable(int pageNo);
 
-    /**
-     * 是否可以上拉加载更多
-     *
-     * @return
-     */
-    protected abstract boolean canLoadMore();
+    public abstract boolean canLoadMore();
 
-    /**
-     * 是否可以下拉刷新
-     *
-     * @return
-     */
     @Override
-    protected abstract boolean canPullToRefresh();
+    public abstract boolean canPullToRefresh();
 }

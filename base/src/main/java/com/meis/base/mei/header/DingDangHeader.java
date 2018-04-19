@@ -1,6 +1,7 @@
 package com.meis.base.mei.header;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -36,7 +37,7 @@ public class DingDangHeader extends LinearLayout implements RefreshHeader {
     //总等级数
     private static final int TOTAL_LEVEL = 35;
     //最大等级
-    private static final int MAX_STATUS_LEVEL = 16;
+    private static final float MAX_STATUS_LEVEL = 16;
     //等级发生改变的高度
     private static final int LEVEL_CHANGE_HEIGHT = 120;
 
@@ -59,7 +60,7 @@ public class DingDangHeader extends LinearLayout implements RefreshHeader {
         mTvStatus = view.findViewById(R.id.refresh_text);
         addView(view);
         setGravity(Gravity.CENTER);
-        setMinimumHeight(DensityUtil.dp2px(60));
+        setMinimumHeight(DensityUtil.dp2px(64));
     }
 
     /**
@@ -190,8 +191,8 @@ public class DingDangHeader extends LinearLayout implements RefreshHeader {
     }
 
     private int getLevel(int moveHeight) {
-        return (int) Math.max(0, Math.min(MAX_STATUS_LEVEL, (float) (moveHeight -
-                LEVEL_CHANGE_HEIGHT) / moveHeight * FIXED_PARAMS_VALUE));
+        return (int) Math.max(0, Math.min(MAX_STATUS_LEVEL / 2, (float) (moveHeight -
+                LEVEL_CHANGE_HEIGHT) / moveHeight * FIXED_PARAMS_VALUE / 2));
     }
 
     private void oneshotLoadingAnimation() {
@@ -204,7 +205,9 @@ public class DingDangHeader extends LinearLayout implements RefreshHeader {
     private void startLoadingAnimation() {
         stopLoadingAnimation();
         mLoadingAnimation = new LoadingAnimation(mIvDingDang.getDrawable().getLevel(), false);
-        mIvDingDang.postOnAnimation(mLoadingAnimation);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mIvDingDang.postOnAnimation(mLoadingAnimation);
+        }
     }
 
     private void stopLoadingAnimation() {
@@ -233,7 +236,9 @@ public class DingDangHeader extends LinearLayout implements RefreshHeader {
             } else if (oneshot && nextLevel == (TOTAL_LEVEL - 1)) {
                 return;
             } else {
-                mIvDingDang.postOnAnimationDelayed(this, 20);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    mIvDingDang.postOnAnimationDelayed(this, 20);
+                }
             }
         }
     }

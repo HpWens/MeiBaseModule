@@ -10,8 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.meis.base.mei.dialog.MeiBaseDialog;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseDialog;
 
 /**
  * desc:
@@ -19,7 +19,7 @@ import com.meis.basemodule.R;
  * date: 2018/4/14.
  */
 
-public class CreateLiveDialog extends MeiBaseDialog {
+public class CreateLiveDialog extends BaseDialog {
 
     TextView mTvLive;
     TextView mTvVideo;

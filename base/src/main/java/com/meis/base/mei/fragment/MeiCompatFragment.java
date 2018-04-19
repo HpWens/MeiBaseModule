@@ -5,79 +5,43 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.meis.base.R;
-import com.meis.base.mei.IStatusHelper;
-import com.meis.base.mei.PullToLoadMore;
-import com.meis.base.mei.PullToRefresh;
-import com.meis.base.mei.StatusHelper;
-import com.meis.base.mei.ViewState;
-import com.meis.base.mei.dialog.MeiBaseDialog;
+import com.meis.base.mei.annotation.PullToLoadMore;
+import com.meis.base.mei.annotation.PullToRefresh;
+import com.meis.base.mei.status.IStatusHelper;
+import com.meis.base.mei.status.ViewState;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
-import com.trello.rxlifecycle2.components.support.RxFragment;
-
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 /**
- * author: ws4
- * created on: 2018/4/8 14:36
- * description:
+ * desc: https://github.com/HpWens/MeiBaseModule
+ * author: ws
+ * date: 2018/4/19.
  */
-public abstract class MeiCompatFragment extends RxFragment implements IStatusHelper {
+public class MeiCompatFragment extends Fragment implements IMeiCompatFragment, IStatusHelper {
 
-    protected final String TAG = getClass().getSimpleName();
-
-    private StatusHelper mStatusHelper = null;
-
-    private Toolbar mToolbar;
-
-    private boolean mUserVisibleHint = true;
-
-    private boolean mKeyboardVisible;
+    final MeiCompatFragmentDelegate mDelegate = new MeiCompatFragmentDelegate(this);
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
-            Bundle savedInstanceState) {
-        int layoutId = getLayoutId();
-        mStatusHelper = new StatusHelper(this, container, layoutId);
-        boolean refreshable = canPullToRefresh();
-        boolean more = canPullToLoadMore();
-        View view = mStatusHelper.setup(refreshable, more);
-        if (refreshable | more) {
-            mStatusHelper.setRefreshHeader(getRefreshHeader());
-            mStatusHelper.setOnRefreshListener(new StatusHelper.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    onRefreshing();
-                }
-
-                @Override
-                public void onLoadMore() {
-                    onLoadingMore();
-                }
-            });
-        }
-        return view;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
+        return !canStatusHelper() ? super.onCreateView(inflater, container, savedInstanceState) : mDelegate
+                .onCreateView(getResLayoutId(), container, this);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //初始化控件
-        initView();
-        //初始化数据
-        initData();
+    public void onRefreshing() {
+
+    }
+
+    @Override
+    public void onLoadingMore() {
+
     }
 
     /**
@@ -86,74 +50,7 @@ public abstract class MeiCompatFragment extends RxFragment implements IStatusHel
      * @return
      */
     public <T extends View> T findViewById(int id) {
-        return (T) getView().findViewById(id);
-    }
-
-    @Override
-    public void onCallContentView(int layoutId) {
-
-    }
-
-    /**
-     * 启动软键盘的监听
-     */
-    protected void enableKeyboardVisibleListener() {
-        mKeyboardVisible = true;
-    }
-
-    public boolean getKeyboardVisible() {
-        return mKeyboardVisible;
-    }
-
-    /**
-     * @param visibility 软键盘的打开/关闭
-     */
-    public void onKeyboardVisibilityChanged(boolean visibility) {
-
-    }
-
-    /**
-     * type 一行代码实现下拉刷新
-     * <p>
-     * PullToRefresh inject class judge refresh
-     *
-     * @return true pull to refresh otherwise false
-     */
-    protected boolean canPullToRefresh() {
-        return getClass().isAnnotationPresent(PullToRefresh.class);
-    }
-
-    /**
-     * type 一行代码实现上拉加载
-     *
-     * @return true pull load more otherwise false
-     */
-    protected boolean canPullToLoadMore() {
-        return getClass().isAnnotationPresent(PullToLoadMore.class);
-    }
-
-    /**
-     * refreshing adding asynchronous processing
-     * <p>
-     * loading refresh
-     */
-    protected void onRefreshing() {
-        //handler refresh logic ...
-
-    }
-
-    /**
-     * load more to add asynchronous processing
-     * <p>
-     * loading more
-     */
-    protected void onLoadingMore() {
-
-    }
-
-    @Override
-    public void onErrorRetry() {
-
+        return mDelegate.findViewById(id);
     }
 
     /**
@@ -164,7 +61,7 @@ public abstract class MeiCompatFragment extends RxFragment implements IStatusHel
      * @param refreshing
      */
     public void setRefreshing(boolean refreshing) {
-        mStatusHelper.setRefreshing(refreshing);
+        mDelegate.setRefreshing(refreshing);
     }
 
     /**
@@ -175,82 +72,91 @@ public abstract class MeiCompatFragment extends RxFragment implements IStatusHel
      * @param loadMore
      */
     public void setLoadingMore(boolean loadMore) {
-        mStatusHelper.setLoadMore(loadMore);
+        mDelegate.setLoadingMore(loadMore);
     }
 
-
-    public Toolbar getToolbarView() {
-        ensureToolbarView();
-        return mToolbar;
+    public void setRefreshHeader(RefreshHeader refreshHeader) {
+        mDelegate.setRefreshHeader(refreshHeader);
     }
 
-    private void ensureToolbarView() {
-        if (mToolbar == null) {
-            setTitleLayout(R.layout.mei_toolbar);
-            mToolbar = (Toolbar) mStatusHelper.getToolBar();
-            ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
-            ((AppCompatActivity) getActivity()).getSupportActionBar()
-                    .setDisplayShowTitleEnabled(false);
-        }
+    @Override
+    public RefreshHeader getRefreshHeader() {
+        return new BezierRadarHeader(getActivity());
+    }
+
+    @Override
+    public boolean canStatusHelper() {
+        return true;
     }
 
     /**
-     * @param layoutResId 设置 toolbar layout
+     * 启动软键盘的监听
      */
-    public void setTitleLayout(@LayoutRes int layoutResId) {
-        mStatusHelper.setTitleLayout(layoutResId);
+    protected void enableKeyboardVisibleListener() {
+        mDelegate.enableKeyboardVisibleListener();
+    }
+
+    @Override
+    public boolean getKeyboardVisible() {
+        return mDelegate.getKeyboardVisible();
+    }
+
+    @Override
+    public void onKeyboardVisibilityChanged(boolean visibility) {
+
+    }
+
+    @Override
+    public boolean canPullToRefresh() {
+        return getClass().isAnnotationPresent(PullToRefresh.class);
+    }
+
+    @Override
+    public boolean canPullToLoadMore() {
+        return getClass().isAnnotationPresent(PullToLoadMore.class);
     }
 
     /**
-     * set state {@link # onCreateView()} before use!
+     * 防止 handler 引起的内存泄漏 处理成静态+弱引用
+     * <p>
      *
-     * @see # setState(viewState,args)
+     * @param delay
+     * @param runnable
      */
-    public void setState(@ViewState.Val int viewState, Object... args) {
-        mStatusHelper.showState(viewState, true, true, args);
+    public void postUiThread(Runnable runnable, long delay) {
+        mDelegate.postUiThread(runnable, delay);
     }
 
     /**
-     * @param viewState
-     * @param args
+     * 获取 toolbar 的布局 view
+     *
+     * @return
      */
-    public void showState(@ViewState.Val int viewState, Object... args) {
-        mStatusHelper.showState(viewState, true, false, args);
+    public Toolbar getToolbarView() {
+        return mDelegate.getToolbarView();
     }
 
     /**
-     * @param viewState
+     * @param layoutResId
      */
-    protected void hideState(@ViewState.Val int viewState) {
-        mStatusHelper.showState(viewState, false, false);
+    public void setToolbarLayout(@LayoutRes int layoutResId) {
+        mDelegate.setToolbarLayout(layoutResId);
     }
 
     /**
-     * @return 获取到空界面 View
+     * @param layoutResId
+     * @return 正在加载界面 View
      */
-    public View getEmptyView() {
-        return mStatusHelper.getEmptyView();
+    public View setLoadingLayout(@LayoutRes int layoutResId) {
+        return mDelegate.setLoadingLayout(layoutResId);
     }
 
     /**
-     * @return 获取到错误界面 View
+     * @param layoutResId
+     * @return 错误界面 View
      */
-    public View getErrorView() {
-        return mStatusHelper.getErrorView();
-    }
-
-    /**
-     * @return 获取到内容界面 View
-     */
-    public View getContentView() {
-        return mStatusHelper.getContentView();
-    }
-
-    /**
-     * @return 获取正在加载界面 View
-     */
-    public View getLoadingView() {
-        return mStatusHelper.getLoadingView();
+    public View setErrorLayout(@LayoutRes int layoutResId) {
+        return mDelegate.setErrorLayout(layoutResId);
     }
 
     /**
@@ -260,28 +166,89 @@ public abstract class MeiCompatFragment extends RxFragment implements IStatusHel
      * @return
      */
     public View setEmptyLayout(@LayoutRes int layoutResId) {
-        return mStatusHelper.setEmptyLayout(layoutResId);
+        return mDelegate.setEmptyLayout(layoutResId);
+    }
+
+    /**
+     * set state {@link #canStatusHelper()} before use!
+     *
+     * @see # setState(viewState,args)
+     */
+    public void setState(@ViewState.Val int viewState, Object... args) {
+        mDelegate.setState(viewState, args);
+    }
+
+    /***
+     *
+     * @param viewState
+     * @param args
+     */
+    public void showState(@ViewState.Val int viewState, Object... args) {
+        mDelegate.showState(viewState, args);
+    }
+
+    /**
+     * @param viewState
+     */
+    protected void hideState(@ViewState.Val int viewState) {
+        mDelegate.hideState(viewState);
+    }
+
+    /**
+     * 获取到空界面 View
+     *
+     * @return
+     */
+    public View getEmptyView() {
+        return mDelegate.getEmptyView();
+    }
+
+    /**
+     * 获取到错误界面 View
+     *
+     * @return
+     */
+    public View getErrorView() {
+        return mDelegate.getErrorView();
+    }
+
+    /**
+     * 获取到内容界面 View
+     *
+     * @return
+     */
+    public View getContentView() {
+        return mDelegate.getContentView();
+    }
+
+    /**
+     * 获取正在加载界面 View
+     *
+     * @return
+     */
+    public View getLoadingView() {
+        return mDelegate.getLoadingView();
     }
 
     /**
      * @param text 提示语
      */
     public void setEmptyText(@StringRes int text) {
-        mStatusHelper.setEmptyText(text);
+        mDelegate.setEmptyText(text);
     }
 
     /**
-     * @param text
+     * @param text 提示语
      */
     public void setEmptyText(String text) {
-        mStatusHelper.setEmptyText(text);
+        mDelegate.setEmptyText(text);
     }
 
     /**
      * @param icon
      */
     public void setEmptyIcon(@DrawableRes int icon) {
-        mStatusHelper.setEmptyIcon(icon);
+        mDelegate.setEmptyIcon(icon);
     }
 
     /**
@@ -289,71 +256,38 @@ public abstract class MeiCompatFragment extends RxFragment implements IStatusHel
      * @param text
      */
     public void setEmptyIconAndText(@DrawableRes int icon, @StringRes int text) {
-        mStatusHelper.setEmptyIconAndText(icon, text);
-    }
-
-    /**
-     * @param layoutResId
-     * @return 正在加载界面 View
-     */
-    public View setLoadingLayout(@LayoutRes int layoutResId) {
-        return mStatusHelper.setLoadingLayout(layoutResId);
-    }
-
-    /**
-     * @param layoutResId
-     * @return 错误界面 View
-     */
-    public View setErrorLayout(@LayoutRes int layoutResId) {
-        return mStatusHelper.setErrorLayout(layoutResId);
-    }
-
-    /**
-     * 防止 handler 引起的内存泄漏
-     * <p>
-     * 这里没有使用Consumer是由于事件销毁不走accept方法
-     *
-     * @param delay
-     * @param onNext
-     */
-    public void postUiThread(long delay, Consumer<Long> onNext) {
-        Observable.timer(delay, TimeUnit.MILLISECONDS)
-                .compose(this.<Long>bindToLifecycle())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onNext);
-    }
-
-    /**
-     * 重写该方法
-     *
-     * @return 下拉刷新样式
-     */
-    public RefreshHeader getRefreshHeader() {
-        return new BezierRadarHeader(getActivity());
-    }
-
-    public void setRefreshHeader(RefreshHeader refreshHeader) {
-        mStatusHelper.setRefreshHeader(refreshHeader);
+        mDelegate.setEmptyIconAndText(icon, text);
     }
 
     /**
      * auto refresh 自动刷新
      */
     public void autoRefresh() {
-        mStatusHelper.autoRefresh();
+        mDelegate.autoRefresh();
+    }
+
+    @Override
+    public void onDetach() {
+        mDelegate.onDetach();
+        super.onDetach();
+    }
+
+    @Deprecated
+    @Override
+    public void onSetContentView(int layoutId) {
+    }
+
+    @Override
+    public void onErrorRetry() {
+
     }
 
     /**
-     * @param baseDialog
+     * 重载返回布局资源
+     *
+     * @return
      */
-    public void showDialog(MeiBaseDialog baseDialog) {
-        getActivity().getSupportFragmentManager().beginTransaction().add(baseDialog, "dialog_" + baseDialog.getClass
-                ().getSimpleName()).commitAllowingStateLoss();
+    public int getResLayoutId() {
+        return 0;
     }
-
-    protected abstract void initView();
-
-    protected abstract void initData();
-
-    protected abstract int getLayoutId();
 }

@@ -1,12 +1,11 @@
 package com.meis.basemodule;
 
-
 import android.content.Intent;
 import android.view.View;
 
-import com.meis.base.mei.MeiBaseActivity;
+import com.meis.basemodule.base.BaseActivity;
 
-public class MainActivity extends MeiBaseActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected int layoutResId() {
@@ -33,4 +32,5 @@ public class MainActivity extends MeiBaseActivity {
     public void clickDialog(View view) {
         startActivity(new Intent(this, com.meis.basemodule.dialog.MainActivity.class));
     }
+
 }

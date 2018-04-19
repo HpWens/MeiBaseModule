@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.meis.base.mei.fragment.MeiBaseFragment;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseFragment;
 import com.meis.basemodule.entity.Article;
 
 /**
  * Created by YoKeyword on 16/6/5.
  */
-public class FirstDetailFragment extends MeiBaseFragment {
+public class FirstDetailFragment extends BaseFragment {
 
     private static final String ARG_ITEM = "arg_item";
 

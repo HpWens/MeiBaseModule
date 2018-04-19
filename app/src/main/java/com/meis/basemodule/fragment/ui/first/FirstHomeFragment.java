@@ -7,11 +7,11 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.meis.base.mei.adapter.MeiBaseAdapter;
-import com.meis.base.mei.entity.Result;
-import com.meis.base.mei.fragment.MeiBaseListFragment;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.FirstHomeAdapter;
+import com.meis.basemodule.base.BaseListFragment;
 import com.meis.basemodule.entity.Article;
+import com.meis.basemodule.entity.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import io.reactivex.Observable;
 /**
  * Created by YoKeyword on 16/6/5.
  */
-public class FirstHomeFragment extends MeiBaseListFragment<Article> {
+public class FirstHomeFragment extends BaseListFragment<Article> {
 
     private String[] mTitles = new String[]{
             "Use imagery to express a distinctive voice and exemplify creative excellence.",
@@ -95,12 +95,12 @@ public class FirstHomeFragment extends MeiBaseListFragment<Article> {
     }
 
     @Override
-    protected boolean canLoadMore() {
+    public boolean canLoadMore() {
         return true;
     }
 
     @Override
-    protected boolean canPullToRefresh() {
+    public boolean canPullToRefresh() {
         return true;
     }
 

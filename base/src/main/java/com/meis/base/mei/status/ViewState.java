@@ -1,4 +1,4 @@
-package com.meis.base.mei;
+package com.meis.base.mei.status;
 
 import android.support.annotation.IntDef;
 

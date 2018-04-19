@@ -5,50 +5,38 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.UiThread;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.view.View;
-import android.view.WindowManager;
-
-import com.meis.base.R;
-import com.trello.rxlifecycle2.components.support.RxAppCompatDialogFragment;
 
 /**
- * author: ws4
- * created on: 2018/4/11 14:06
- * description:
+ * desc:
+ * author: ws
+ * date: 2018/4/19.
  */
-public class MeiCompatDialog extends RxAppCompatDialogFragment {
 
-    protected final String TAG = getClass().getSimpleName();
+public class MeiCompatDialog extends AppCompatDialogFragment implements IMeiCompatDialog {
 
-    private boolean mImmersive;
-
-    private DialogInterface.OnDismissListener mOnDismissListener;
-
-    public <T extends View> T findViewById(@IdRes int id) {
-        return (T) getView().findViewById(id);
-    }
+    final MeiCompatDialogDelegate mDelegate = new MeiCompatDialogDelegate(this);
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        if (mImmersive) {
-            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
-        }
-        return dialog;
+        return mDelegate.onCreateDialog(super.onCreateDialog(savedInstanceState));
     }
 
     protected void setFullScreen() {
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MeiBaseDialog);
+        mDelegate.setFullScreen();
     }
 
-    public void show(FragmentActivity activity) {
-        activity.getSupportFragmentManager().beginTransaction().add(this, "dialog_" + toString())
-                .commitAllowingStateLoss();
+    public <T extends View> T findViewById(@IdRes int id) {
+        return mDelegate.findViewById(id);
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        mDelegate.onDismiss(dialog);
     }
 
     /**
@@ -57,44 +45,15 @@ public class MeiCompatDialog extends RxAppCompatDialogFragment {
      * @param activity
      */
     public void showImmersive(FragmentActivity activity) {
-        try {
-            mImmersive = true;
-            activity.getSupportFragmentManager().beginTransaction().add(this, "dialog_" +
-                    toString())
-                    .commitNowAllowingStateLoss();
-            getDialog().getWindow().getDecorView().setSystemUiVisibility(
-                    getActivity().getWindow().getDecorView().getSystemUiVisibility()
-            );
-            getDialog().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (mOnDismissListener != null) {
-            mOnDismissListener.onDismiss(dialog);
-        }
+        mDelegate.showImmersive(activity);
     }
 
     public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        mOnDismissListener = onDismissListener;
+        mDelegate.setOnDismissListener(onDismissListener);
     }
 
     @Override
     public void dismiss() {
-        dismissAllowingStateLoss();
+        mDelegate.dismiss();
     }
-
-    @UiThread
-    protected void finishActivity() {
-        try {
-            ActivityCompat.finishAfterTransition(getActivity());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }

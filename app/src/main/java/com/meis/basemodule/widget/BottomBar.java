@@ -151,8 +151,7 @@ public class BottomBar extends LinearLayout {
             out.writeInt(position);
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable
-                .Creator<SavedState>() {
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }
@@ -162,7 +161,6 @@ public class BottomBar extends LinearLayout {
             }
         };
     }
-
 
     public void hide() {
         hide(true);

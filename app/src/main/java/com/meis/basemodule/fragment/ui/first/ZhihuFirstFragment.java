@@ -2,13 +2,13 @@ package com.meis.basemodule.fragment.ui.first;
 
 import android.os.Bundle;
 
-import com.meis.base.mei.fragment.MeiBaseFragment;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseFragment;
 
 /**
  * Created by YoKeyword on 16/6/5.
  */
-public class ZhihuFirstFragment extends MeiBaseFragment {
+public class ZhihuFirstFragment extends BaseFragment {
 
     public static ZhihuFirstFragment newInstance() {
 

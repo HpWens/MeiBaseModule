@@ -7,13 +7,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.meis.base.mei.MeiBaseActivity;
-import com.meis.base.mei.PullToLoadMore;
-import com.meis.base.mei.PullToRefresh;
-import com.meis.base.mei.ViewState;
+import com.meis.base.mei.annotation.PullToLoadMore;
+import com.meis.base.mei.annotation.PullToRefresh;
 import com.meis.base.mei.header.DingDangHeader;
-import com.meis.base.mei.rxjava.UiSubscriber;
+import com.meis.base.mei.status.ViewState;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseActivity;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
@@ -24,7 +23,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
  */
 @PullToRefresh
 @PullToLoadMore
-public class PullRefreshActivity extends MeiBaseActivity implements Toolbar.OnMenuItemClickListener {
+public class PullRefreshActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
 
     @Override
     protected void initView() {
@@ -54,29 +53,29 @@ public class PullRefreshActivity extends MeiBaseActivity implements Toolbar.OnMe
     }
 
     @Override
-    protected void onRefreshing() {
+    public void onRefreshing() {
         super.onRefreshing();
-        postUiThread(2000, new UiSubscriber<Long>() {
+        postUiThread(new Runnable() {
             @Override
-            public void onCompleted() {
+            public void run() {
                 Toast.makeText(PullRefreshActivity.this, getResources().getString(R.string
                         .mei_refresh_success), Toast.LENGTH_SHORT).show();
                 PullRefreshActivity.this.setRefreshing(false);
             }
-        });
+        }, 2000);
     }
 
     @Override
-    protected void onLoadingMore() {
+    public void onLoadingMore() {
         super.onLoadingMore();
-        postUiThread(2000, new UiSubscriber<Long>() {
+        postUiThread(new Runnable() {
             @Override
-            public void onCompleted() {
+            public void run() {
                 Toast.makeText(PullRefreshActivity.this, getResources().getString(R.string
                         .mei_refresh_success), Toast.LENGTH_SHORT).show();
                 PullRefreshActivity.this.setLoadingMore(false);
             }
-        });
+        }, 2000);
     }
 
     @Override

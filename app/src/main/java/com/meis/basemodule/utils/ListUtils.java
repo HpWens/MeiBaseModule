@@ -1,4 +1,4 @@
-package com.meis.base.mei.utils;
+package com.meis.basemodule.utils;
 
 import java.util.Collection;
 

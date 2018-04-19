@@ -1,4 +1,4 @@
-package com.meis.base.mei.entity;
+package com.meis.basemodule.entity;
 
 /**
  * author: ws4

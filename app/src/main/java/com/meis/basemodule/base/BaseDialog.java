@@ -1,4 +1,4 @@
-package com.meis.base.mei.dialog;
+package com.meis.basemodule.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,12 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.meis.base.mei.dialog.MeiCompatDialog;
+
+
 /**
- * author: ws4
- * created on: 2018/4/11 14:12
- * description:
+ * desc:
+ * author: ws
+ * date: 2018/4/19.
  */
-public abstract class MeiBaseDialog extends MeiCompatDialog {
+
+public abstract class BaseDialog extends MeiCompatDialog {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,10 +36,6 @@ public abstract class MeiBaseDialog extends MeiCompatDialog {
         initView();
         //初始化数据
         initData();
-    }
-
-    public <T extends View> T findViewById(int id) {
-        return (T) getView().findViewById(id);
     }
 
     protected abstract int getLayoutId();

@@ -3,9 +3,9 @@ package com.meis.basemodule.activity.ui;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.meis.base.mei.MeiBaseActivity;
 import com.meis.base.mei.utils.Eyes;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseActivity;
 
 /**
  * desc:
@@ -13,7 +13,7 @@ import com.meis.basemodule.R;
  * date: 2018/4/14.
  */
 
-public class TranslucentActivity extends MeiBaseActivity {
+public class TranslucentActivity extends BaseActivity {
 
     Toolbar mToolbar;
 

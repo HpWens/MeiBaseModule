@@ -1,8 +1,9 @@
-package com.meis.base.mei;
+package com.meis.base.mei.status;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -82,7 +83,7 @@ public class StatusHelper {
     public View setup(boolean enableRefresh, boolean enableLoadMore) {
         if (mView == null) {
             if (mListener instanceof Activity) {
-                mListener.onCallContentView((enableRefresh | enableLoadMore) ? R.layout
+                mListener.onSetContentView((enableRefresh | enableLoadMore) ? R.layout
                         .mei_base_with_refresh : R.layout.mei_base);
                 mView = ((Activity) mListener).findViewById(R.id.base_main);
                 mContext = mView.getContext();
@@ -113,8 +114,10 @@ public class StatusHelper {
             mContentView = contentStub.inflate();
             Drawable background = mContentView.getBackground();
             if (background != null) {
-                mContentView.setBackground(null);
-                mView.setBackground(background);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    mContentView.setBackground(null);
+                    mView.setBackground(background);
+                }
             }
         }
     }
@@ -142,8 +145,7 @@ public class StatusHelper {
 
     public View setTitleLayout(@LayoutRes int layoutResId) {
         TypedValue tv = new TypedValue();
-        int actionBarHeight = mContext.getResources().getDimensionPixelSize(R.dimen
-                .mei_48_dp);
+        int actionBarHeight = mContext.getResources().getDimensionPixelSize(R.dimen.mei_48_dp);
         if (mContext.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
             actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, mContext
                     .getResources().getDisplayMetrics());

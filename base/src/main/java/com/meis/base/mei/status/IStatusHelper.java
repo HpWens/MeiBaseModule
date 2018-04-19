@@ -1,4 +1,4 @@
-package com.meis.base.mei;
+package com.meis.base.mei.status;
 
 /**
  * author: ws4
@@ -12,7 +12,7 @@ public interface IStatusHelper {
      *
      * @param layoutId
      */
-    void onCallContentView(int layoutId);
+    void onSetContentView(int layoutId);
 
     /**
      * error view retry loading

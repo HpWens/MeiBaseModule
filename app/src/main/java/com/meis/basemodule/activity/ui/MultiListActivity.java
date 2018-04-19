@@ -5,19 +5,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.meis.base.mei.MeiBaseListActivity;
 import com.meis.base.mei.adapter.MeiBaseAdapter;
 import com.meis.base.mei.adapter.MeiBaseMixAdapter;
-import com.meis.base.mei.entity.Result;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.MultiAdapter;
 import com.meis.basemodule.adapter.MultiAdapter1;
 import com.meis.basemodule.adapter.MultiAdapter2;
 import com.meis.basemodule.adapter.MultiAdapter3;
+import com.meis.basemodule.base.BaseListActivity;
 import com.meis.basemodule.entity.MultiBean;
 import com.meis.basemodule.entity.MultiBean1;
 import com.meis.basemodule.entity.MultiBean2;
 import com.meis.basemodule.entity.MultiBean3;
+import com.meis.basemodule.entity.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +29,13 @@ import io.reactivex.Observable;
  * created on: 2018/4/11 15:33
  * description:
  */
-public class MultiListActivity extends MeiBaseListActivity<Object> {
+public class MultiListActivity extends BaseListActivity<Object> {
 
     RecyclerView mRecyclerView;
     MeiBaseMixAdapter mAdapter;
 
     @Override
     protected void initData() {
-        super.initData();
         getToolbarView().setTitle(getResources().getString(R.string.mul_type));
         getToolbarView().setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         getToolbarView().setNavigationOnClickListener(new View.OnClickListener() {
@@ -100,12 +99,12 @@ public class MultiListActivity extends MeiBaseListActivity<Object> {
     }
 
     @Override
-    protected boolean canLoadMore() {
+    public boolean canLoadMore() {
         return true;
     }
 
     @Override
-    protected boolean canPullToRefresh() {
+    public boolean canPullToRefresh() {
         return true;
     }
 

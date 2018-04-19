@@ -54,7 +54,7 @@ public class Chat implements Parcelable {
         this.avatar = in.readInt();
     }
 
-    public static final Parcelable.Creator<Chat> CREATOR = new Parcelable.Creator<Chat>() {
+    public static final Creator<Chat> CREATOR = new Creator<Chat>() {
         @Override
         public Chat createFromParcel(Parcel source) {
             return new Chat(source);

@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
-import com.meis.base.mei.fragment.MeiBaseFragment;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.ZhihuPagerFragmentAdapter;
+import com.meis.basemodule.base.BaseFragment;
 
 /**
  * Created by YoKeyword on 16/6/3.
  */
-public class ZhihuSecondFragment extends MeiBaseFragment {
+public class ZhihuSecondFragment extends BaseFragment {
 
     TabLayout mTabLayout;
     ViewPager mViewPager;

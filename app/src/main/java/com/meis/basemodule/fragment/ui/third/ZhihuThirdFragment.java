@@ -7,12 +7,12 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.meis.base.mei.adapter.MeiBaseAdapter;
-import com.meis.base.mei.entity.Result;
-import com.meis.base.mei.fragment.MeiBaseListFragment;
 import com.meis.base.mei.header.DingDangHeader;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.ChatAdapter;
+import com.meis.basemodule.base.BaseListFragment;
 import com.meis.basemodule.entity.Chat;
+import com.meis.basemodule.entity.Result;
 import com.meis.basemodule.fragment.MainFragment;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 
@@ -24,7 +24,7 @@ import io.reactivex.Observable;
 /**
  * Created by YoKeyword on 16/6/3.
  */
-public class ZhihuThirdFragment extends MeiBaseListFragment<Chat> {
+public class ZhihuThirdFragment extends BaseListFragment<Chat> {
 
     public static ZhihuThirdFragment newInstance() {
 
@@ -93,12 +93,12 @@ public class ZhihuThirdFragment extends MeiBaseListFragment<Chat> {
     }
 
     @Override
-    protected boolean canLoadMore() {
+    public boolean canLoadMore() {
         return false;
     }
 
     @Override
-    protected boolean canPullToRefresh() {
+    public boolean canPullToRefresh() {
         return true;
     }
 

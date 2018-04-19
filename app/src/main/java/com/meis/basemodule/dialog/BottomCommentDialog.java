@@ -6,8 +6,8 @@ import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.meis.base.mei.dialog.MeiBaseDialog;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseDialog;
 
 /**
  * desc: 以底部弹出评论提示框 可以解决很多软键盘与滚动界面冲突问题
@@ -15,7 +15,7 @@ import com.meis.basemodule.R;
  * date: 2018/4/14.
  */
 
-public class BottomCommentDialog extends MeiBaseDialog {
+public class BottomCommentDialog extends BaseDialog {
 
     @Override
     protected int getLayoutId() {

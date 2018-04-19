@@ -1,4 +1,4 @@
-package com.meis.base.mei.fragment;
+package com.meis.basemodule.base;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,8 +7,9 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.animation.Animation;
 
-import com.meis.base.R;
 import com.meis.base.mei.MeiCompatActivity;
+import com.meis.base.mei.fragment.MeiCompatFragment;
+import com.meis.basemodule.R;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
@@ -17,11 +18,12 @@ import me.yokeyword.fragmentation.SupportHelper;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
- * author: ws4
- * created on: 2018/4/9 11:36
- * description: fragmentation
+ * desc:
+ * author: ws
+ * date: 2018/4/19.
  */
-public abstract class MeiBaseFragment extends MeiCompatFragment implements ISupportFragment {
+
+public abstract class BaseFragment extends MeiCompatFragment implements ISupportFragment {
 
     final SupportFragmentDelegate mDelegate = new SupportFragmentDelegate(this);
 
@@ -52,6 +54,13 @@ public abstract class MeiBaseFragment extends MeiCompatFragment implements ISupp
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDelegate.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+        initData();
     }
 
     @Override
@@ -462,4 +471,15 @@ public abstract class MeiBaseFragment extends MeiCompatFragment implements ISupp
     public <T extends ISupportFragment> T findChildFragment(Class<T> fragmentClass) {
         return SupportHelper.findFragment(getChildFragmentManager(), fragmentClass);
     }
+
+    @Override
+    public int getResLayoutId() {
+        return getLayoutId();
+    }
+
+    protected abstract void initView();
+
+    protected abstract void initData();
+
+    protected abstract int getLayoutId();
 }

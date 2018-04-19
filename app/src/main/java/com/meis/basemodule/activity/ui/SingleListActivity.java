@@ -4,14 +4,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.meis.base.mei.MeiBaseListActivity;
-import com.meis.base.mei.ViewState;
 import com.meis.base.mei.adapter.MeiBaseAdapter;
-import com.meis.base.mei.entity.Result;
-import com.meis.base.mei.rxjava.UiSubscriber;
+import com.meis.base.mei.status.ViewState;
 import com.meis.basemodule.R;
 import com.meis.basemodule.adapter.MeiSimpleAdapter;
+import com.meis.basemodule.base.BaseListActivity;
 import com.meis.basemodule.entity.Article;
+import com.meis.basemodule.entity.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +22,13 @@ import io.reactivex.Observable;
  * created on: 2018/4/11 15:32
  * description:
  */
-public class SingleListActivity extends MeiBaseListActivity<Article> {
+public class SingleListActivity extends BaseListActivity<Article> {
 
     RecyclerView mRecyclerView;
     MeiSimpleAdapter mAdapter;
 
     @Override
     protected void initData() {
-        super.initData();
         getToolbarView().setTitle(getResources().getString(R.string.simple_type));
         getToolbarView().setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         getToolbarView().setNavigationOnClickListener(new View.OnClickListener() {
@@ -78,21 +76,21 @@ public class SingleListActivity extends MeiBaseListActivity<Article> {
 
     @Override
     protected void loadPage(final int pageNo) {
-        postUiThread(2000, new UiSubscriber<Long>() {
+        postUiThread(new Runnable() {
             @Override
-            public void onCompleted() {
+            public void run() {
                 SingleListActivity.super.loadPage(pageNo);
             }
-        });
+        }, 2000);
     }
 
     @Override
-    protected boolean canLoadMore() {
+    public boolean canLoadMore() {
         return true;
     }
 
     @Override
-    protected boolean canPullToRefresh() {
+    public boolean canPullToRefresh() {
         return true;
     }
 

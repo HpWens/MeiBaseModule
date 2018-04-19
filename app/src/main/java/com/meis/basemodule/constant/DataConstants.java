@@ -1,4 +1,4 @@
-package com.meis.base.mei;
+package com.meis.basemodule.constant;
 
 public interface DataConstants {
 

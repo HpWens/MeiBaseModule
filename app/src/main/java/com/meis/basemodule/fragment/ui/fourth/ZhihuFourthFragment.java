@@ -2,14 +2,14 @@ package com.meis.basemodule.fragment.ui.fourth;
 
 import android.os.Bundle;
 
-import com.meis.base.mei.ViewState;
-import com.meis.base.mei.fragment.MeiBaseFragment;
+import com.meis.base.mei.status.ViewState;
 import com.meis.basemodule.R;
+import com.meis.basemodule.base.BaseFragment;
 
 /**
  * Created by YoKeyword on 16/6/3.
  */
-public class ZhihuFourthFragment extends MeiBaseFragment {
+public class ZhihuFourthFragment extends BaseFragment {
 
     public static ZhihuFourthFragment newInstance() {
 

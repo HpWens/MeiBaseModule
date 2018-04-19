@@ -1,4 +1,4 @@
-package com.meis.base.mei;
+package com.meis.basemodule.base;
 
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -6,7 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 
-import com.meis.base.mei.fragment.MeiBaseFragment;
+import com.meis.base.mei.MeiCompatActivity;
+import com.meis.base.mei.dialog.MeiCompatDialog;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
@@ -16,23 +17,22 @@ import me.yokeyword.fragmentation.SupportHelper;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
- * author: ws4
- * created on: 2018/3/22 12:29
- * description: fragmentation
+ * desc:
+ * author: ws
+ * date: 2018/4/19.
  */
-public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupportActivity {
+
+public abstract class BaseActivity extends MeiCompatActivity implements ISupportActivity {
 
     final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onSavedInstanceState(@Nullable Bundle savedInstanceState) {
-        super.onSavedInstanceState(savedInstanceState);
         mDelegate.onCreate(savedInstanceState);
+        setContentView(layoutResId());
+        initView();
+        initData();
     }
 
     @Override
@@ -176,14 +176,14 @@ public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupp
     /**
      * 同 Activity 的 startActivity
      * <p>
-     * It is recommended to use {@link MeiBaseFragment# start(ISupportFragment)}.
+     * It is recommended to use {@link BaseActivity# start(ISupportFragment)}.
      */
     public void start(ISupportFragment toFragment) {
         mDelegate.start(toFragment);
     }
 
     /**
-     * It is recommended to use {@link MeiBaseFragment# start(ISupportFragment, int)}.
+     * It is recommended to use {@link BaseActivity# start(ISupportFragment, int)}.
      *
      * @param launchMode Similar to Activity's LaunchMode.
      */
@@ -192,7 +192,7 @@ public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupp
     }
 
     /**
-     * It is recommended to use {@link MeiBaseFragment# startForResult(ISupportFragment, int)}.
+     * It is recommended to use {@link BaseActivity# startForResult(ISupportFragment, int)}.
      * Launch an fragment for which you would like a result when it poped.
      */
     public void startForResult(ISupportFragment toFragment, int requestCode) {
@@ -200,7 +200,7 @@ public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupp
     }
 
     /**
-     * It is recommended to use {@link MeiBaseFragment# startWithPop(ISupportFragment)}.
+     * It is recommended to use {@link BaseActivity# startWithPop(ISupportFragment)}.
      * Start the target Fragment and pop itself
      */
     public void startWithPop(ISupportFragment toFragment) {
@@ -209,7 +209,7 @@ public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupp
 
     /**
      * It is recommended to use
-     * {@link MeiBaseFragment# startWithPopTo(ISupportFragment, Class, boolean)}.
+     * {@link BaseActivity# startWithPopTo(ISupportFragment, Class, boolean)}.
      *
      * @see #popTo(Class, boolean)
      * +
@@ -221,7 +221,7 @@ public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupp
     }
 
     /**
-     * It is recommended to use {@link MeiBaseFragment# replaceFragment(ISupportFragment, boolean)}.
+     * It is recommended to use {@link BaseActivity# replaceFragment(ISupportFragment, boolean)}.
      */
     public void replaceFragment(ISupportFragment toFragment, boolean addToBackStack) {
         mDelegate.replaceFragment(toFragment, addToBackStack);
@@ -284,5 +284,34 @@ public abstract class MeiBaseActivity extends MeiCompatActivity implements ISupp
     public <T extends ISupportFragment> T findFragment(Class<T> fragmentClass) {
         return SupportHelper.findFragment(getSupportFragmentManager(), fragmentClass);
     }
+
+    /**
+     * @param baseDialog
+     */
+    public void showDialog(MeiCompatDialog baseDialog) {
+        getSupportFragmentManager().beginTransaction().add(baseDialog, "dialog_" + baseDialog.getClass
+                ().getSimpleName()).commitAllowingStateLoss();
+    }
+
+    /**
+     * 初始化控件
+     * <p>
+     * init view
+     */
+    protected abstract void initView();
+
+    /**
+     * 初始化数据 填充数据 异步请求
+     * <p>
+     * init data
+     */
+    protected abstract void initData();
+
+    /**
+     * 填充布局资源
+     *
+     * @return
+     */
+    protected abstract int layoutResId();
 
 }
