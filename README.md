@@ -3,6 +3,7 @@
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Hex.pm](https://img.shields.io/github/stars/HpWens/MeiBaseModule.svg)](https://github.com/HpWens/MeiBaseModule)
 
+<font color=#FF0000>  字体改成红色了 </font>  
 
 # MeiBaseModule
 A powerful multi-function library that extended base activity for Android!
